@@ -1,6 +1,6 @@
 /* Service worker do Diário Mágico da Jade.
    Troque VERSION a cada publicação: o cache antigo é apagado e a casca é baixada de novo. */
-const VERSION = "diario-2026-11-03c";
+const VERSION = "diario-2026-11-03d";
 const SHELL = [
   "./", "./index.html", "./config.js", "./manifest.webmanifest", "./favicon.png",
   "./vendor/supabase.min.js", "./fonts/fonts.css",
