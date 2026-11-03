@@ -12,11 +12,9 @@
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="icon" type="image/png" href="./favicon.png">
 <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="./vendor/supabase.min.js"></script>
 <script src="./config.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=Crimson+Pro:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./fonts/fonts.css">
 <style>
   :root{
     --bg: hsl(38 40% 92%); --fg: hsl(28 35% 18%); --muted: hsl(28 25% 38%);
@@ -84,7 +82,7 @@
   .owl{white-space:pre-line;margin-top:12px;font-size:16.5px;line-height:1.5}
   .owl b{color:var(--gold-dark)}
   .actions{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
-  .btn{font-family:var(--head);font-weight:600;font-size:14px;letter-spacing:.03em;padding:11px 16px;border-radius:12px;border:1px solid hsl(32 30% 65%);background:var(--card);color:var(--fg);flex:1;min-width:120px;text-align:center}
+  .btn{min-height:46px;font-family:var(--head);font-weight:600;font-size:14px;letter-spacing:.03em;padding:11px 16px;border-radius:12px;border:1px solid hsl(32 30% 65%);background:var(--card);color:var(--fg);flex:1;min-width:120px;text-align:center}
   .btn.gold{background:linear-gradient(180deg,#e5bb45,#c89a22);color:#fff;border-color:#b58a1b;text-shadow:0 1px 1px rgba(0,0,0,.25)}
   .btn:disabled{opacity:.6}
   .props{display:block;width:100%;height:130px;object-fit:cover;border-radius:14px;margin-top:16px;border:1px solid var(--card-border);box-shadow:var(--shadow)}
@@ -97,16 +95,16 @@
 
   /* ---------- semanas ---------- */
   .week{padding:0;overflow:hidden}
-  .banner{position:relative;height:168px;color:#fff;overflow:hidden}
-  .banner::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.12) 0%,rgba(0,0,0,.08) 35%,rgba(0,0,0,.66) 100%)}
+  .banner{position:relative;height:204px;color:#fff;overflow:hidden}
+  .banner::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.28) 0%,rgba(0,0,0,.18) 35%,rgba(0,0,0,.84) 100%)}
   .banner .deco{position:absolute;right:16px;top:14px;font-size:62px;line-height:1;filter:drop-shadow(0 4px 8px rgba(0,0,0,.4));z-index:1}
   .banner .deco small{display:block;font-size:34px;text-align:right;margin-top:-6px}
   .banner .t{position:absolute;left:16px;right:16px;bottom:12px;z-index:1}
   .banner .tema{font-family:var(--head);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;opacity:.95;text-shadow:0 1px 4px rgba(0,0,0,.8)}
   .banner h3{font-family:var(--head);font-weight:700;font-size:25px;line-height:1.1;margin-top:3px;text-shadow:0 2px 6px rgba(0,0,0,.8)}
-  .banner h3 small{font-family:var(--head);font-size:12px;letter-spacing:.1em;opacity:.9;margin-left:8px;font-weight:500}
+  .banner h3 small{display:block;font-family:var(--head);font-size:11.5px;letter-spacing:.12em;opacity:.92;margin-top:3px;font-weight:500;white-space:nowrap}
   .banner .q{font-style:italic;font-size:14px;margin-top:4px;text-shadow:0 1px 4px rgba(0,0,0,.8);opacity:.95}
-  .banner .pills{position:absolute;right:12px;bottom:12px;display:flex;gap:5px;z-index:1}
+  .banner .pills{display:flex;gap:6px;margin-top:8px}
   .banner .pill{display:flex;align-items:center;gap:4px;padding:3px 8px 3px 4px;border-radius:999px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.45);font-family:var(--head);font-weight:700;font-size:12px;backdrop-filter:blur(3px)}
   .banner .pill i{font-style:normal;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px}
   .pill.g i{background:hsl(130 65% 45%)} .pill.y i{background:hsl(48 95% 55%)} .pill.r i{background:hsl(0 75% 55%)}
@@ -146,11 +144,11 @@
   .day .dots i{width:5px;height:5px;border-radius:50%;background:hsl(32 28% 72%)}
   .dots i.p{background:hsl(130 55% 42%)} .dots i.n{background:hsl(0 70% 50%)} .dots i.z{background:hsl(38 80% 55%)}
 
-  .worlds{display:flex;gap:12px;overflow-x:auto;padding:14px 2px 6px;scrollbar-width:none}
+  .worlds{display:flex;gap:10px;overflow-x:auto;padding:14px 2px 6px;scrollbar-width:none;scroll-snap-type:x proximity;-webkit-mask-image:linear-gradient(90deg,#000 86%,transparent);mask-image:linear-gradient(90deg,#000 86%,transparent)}
   .worlds::-webkit-scrollbar{display:none}
-  .world{flex:none;width:70px;text-align:center}
+  .world{flex:none;width:76px;text-align:center;scroll-snap-align:start}
   .world .av{width:62px;height:62px;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:30px;border:3px solid;box-shadow:var(--shadow);overflow:hidden;background-size:cover;background-position:center}
-  .world .nm{font-family:var(--head);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;margin-top:6px;color:var(--gold-dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .world .nm{font-family:var(--head);font-size:9px;letter-spacing:.04em;text-transform:uppercase;margin-top:6px;color:var(--gold-dark);line-height:1.15;height:2.3em;overflow:hidden;overflow-wrap:anywhere}
   .world.now .av{box-shadow:0 0 0 3px #fff,0 0 0 5px var(--gold)}
   .av.hp{background:url(crest.png) center/cover,#3a1d4e;border-color:#b8902e} .av.sw{background:url(sw.jpg) center/cover;border-color:#4f8cff} .av.ppg{background:url(ppg.jpg) center/cover;border-color:#ff6fb0} .av.mario{background:url(mario.jpg) center 40%/cover;border-color:#e52521} .av.gwen{background:url(gwen.jpg) 35% 15%/cover;border-color:#4fd8d0} .av.samcat{background:url(samcat.jpg) center 25%/cover;border-color:#ff5fa5} .av.bluey{background:url(bluey.jpg) center/cover;border-color:#3b8de0} .av.final{background:url(final.jpg) center 75%/cover;border-color:#e9c35a}
 
@@ -191,7 +189,14 @@
   .mrow .lv{font-family:var(--head);font-size:12px;font-weight:600}
   .mrow .ic{display:flex;justify-content:space-between;margin-top:8px;gap:4px}
   .mrow .ic button{flex:1;height:48px;border-radius:12px;border:2px solid transparent;font-size:21px;opacity:.5;transition:all .12s;background:transparent}
-  .mrow .ic button[data-v="-2"]{font-size:15px;letter-spacing:-3px}
+  .mrow .ic button[data-v="-2"]{font-size:19px;letter-spacing:-5px}
+  .mrow .ic button{position:relative}
+  @keyframes cast{0%{transform:scale(1)}45%{transform:scale(1.35)}100%{transform:scale(1.06)}}
+  @keyframes spark{from{opacity:1;transform:translateY(0) scale(.6)}to{opacity:0;transform:translateY(-16px) scale(1.4)}}
+  .mrow .ic button.cast{animation:cast .45s cubic-bezier(.3,1.6,.6,1);box-shadow:0 0 0 3px hsl(42 90% 60% / .55),0 0 18px hsl(42 95% 60% / .8)}
+  .mrow .ic button.cast::after{content:"✨";position:absolute;top:-6px;right:-2px;font-size:15px;animation:spark .6s ease-out forwards;pointer-events:none}
+  .mrow .ic button:focus-visible,.sh-head .x:focus-visible,.btn:focus-visible,.day:focus-visible,.lock:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  @media (prefers-reduced-motion:reduce){.mrow .ic button.cast,.mrow .ic button.cast::after,.sheet{animation:none}}
   .mrow .ic button.sel{opacity:1;background:#fff;box-shadow:var(--shadow);transform:scale(1.06)}
   .mrow.ro .ic button{pointer-events:none}
   .c-2{color:hsl(0 75% 45%)} .c-1{color:hsl(15 70% 50%)} .c0{color:hsl(35 30% 50%)} .c1{color:hsl(42 85% 45%)} .c2{color:hsl(42 95% 45%)}
@@ -212,6 +217,7 @@
   .pinbox .err{color:var(--bad);font-size:14px;min-height:1.3em;margin-top:6px}
   .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translate(-50%,20px);background:hsl(28 35% 18%);color:#fff;padding:10px 18px;border-radius:999px;font-size:15px;opacity:0;transition:all .25s;z-index:99;pointer-events:none;white-space:nowrap;max-width:92vw}
   .toast.show{opacity:1;transform:translate(-50%,0)}
+  .toast.up{bottom:calc(100px + env(safe-area-inset-bottom))}
 </style>
 </head>
 <body>
@@ -270,7 +276,8 @@
   <div id="weeks"></div>
 
   <section class="card">
-    <h2><span class="ico">✨</span>Os 7 mundos da missão</h2>
+    <h2><span class="ico">✨</span>Os mundos da missão</h2>
+    <div class="sub">Sete semanas de aventura e a Grande Final. Deslize para ver todos.</div>
     <div class="worlds" id="worlds"></div>
   </section>
 
@@ -290,7 +297,7 @@
   <p class="foot">Feito com 💛 para a Jade<br><span id="footRange"></span> — A magia está em cada escolha.</p>
 </div>
 
-<div id="sheetWrap" class="overlay hidden"><div class="sheet" id="sheet"></div></div>
+<div id="sheetWrap" class="overlay hidden"><div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="shDate"></div></div>
 
 <div id="loginModal" class="overlay hidden">
   <div class="pinbox">
@@ -310,15 +317,15 @@
   const $ = id => document.getElementById(id);
 
   const WORLDS = [
-    { key: "hp", name: "Harry Potter", emoji: "⚡", deco: "🪄", quote: "Coragem para começar a jornada", good: "Dez pontos para a Jade! 🦁", warn: "Até os melhores bruxos erram um feitiço. Amanhã você acerta! 🪄" },
-    { key: "sw", name: "Star Wars", emoji: "🌌", deco: "⚔️", quote: "Que a Força esteja com você", good: "A Força está forte em você, jovem Jedi! ✨", warn: "O lado da luz espera por você. Respire fundo e tente de novo. 💫" },
-    { key: "ppg", name: "Meninas Superpoderosas", emoji: "💖", deco: "💖", quote: "Açúcar, tempero e tudo o que há de bom", good: "O dia foi salvo graças à Jade! 💥", warn: "Toda super-heroína tem um dia difícil. Amanhã é hora de voar! 🌈" },
-    { key: "mario", name: "Mario e Princesa Peach", emoji: "🍄", deco: "👑", quote: "Cada dia é uma fase nova no Reino dos Cogumelos", good: "Fase concluída! Uma princesa de verdade! 🍑🚩", warn: "Perdeu uma vida, mas o jogo continua. Pega a estrela amanhã! ⭐" },
-    { key: "gwen", name: "Fantasma-Aranha", emoji: "🕸️", deco: "🩰", quote: "Com grandes poderes vêm grandes escolhas", good: "Gwen ficaria orgulhosa! 🕷️💗", warn: "Até a Fantasma-Aranha cai antes de voar de novo. 🕸️" },
-    { key: "samcat", name: "Sam & Cat", emoji: "🎀", deco: "🍭", quote: "Rir junto resolve qualquer confusão", good: "Dupla imbatível! Que dia divertido! 🎀", warn: "Até a Sam e a Cat se atrapalham às vezes. Amanhã a bagunça vira risada! 🍭" },
-    { key: "bluey", name: "Bluey", emoji: "🐾", deco: "🐶", quote: "Brincar é coisa séria. E ser gentil também", good: "Até o Bandit ficaria orgulhoso! 🐾", warn: "Todo dia é um jogo novo. Bora tentar de novo, Bluey! 🐶" },
+    { key: "hp", name: "Harry Potter", short: "Harry Potter", emoji: "⚡", deco: "🪄", quote: "Coragem para começar a jornada", good: "Dez pontos para a Jade! 🦁", warn: "Até os melhores bruxos erram um feitiço. Amanhã você acerta! 🪄" },
+    { key: "sw", name: "Star Wars", short: "Star Wars", emoji: "🌌", deco: "⚔️", quote: "Que a Força esteja com você", good: "A Força está forte em você, jovem Jedi! ✨", warn: "O lado da luz espera por você. Respire fundo e tente de novo. 💫" },
+    { key: "ppg", name: "Meninas Superpoderosas", short: "Super-poderosas", emoji: "💖", deco: "💖", quote: "Açúcar, tempero e tudo o que há de bom", good: "O dia foi salvo graças à Jade! 💥", warn: "Toda super-heroína tem um dia difícil. Amanhã é hora de voar! 🌈" },
+    { key: "mario", name: "Mario e Princesa Peach", short: "Mario & Peach", emoji: "🍄", deco: "👑", quote: "Cada dia é uma fase nova no Reino dos Cogumelos", good: "Fase concluída! Uma princesa de verdade! 🍑🚩", warn: "Perdeu uma vida, mas o jogo continua. Pega a estrela amanhã! ⭐" },
+    { key: "gwen", name: "Fantasma-Aranha", short: "Fantasma-Aranha", emoji: "🕸️", deco: "🩰", quote: "Com grandes poderes vêm grandes escolhas", good: "Gwen ficaria orgulhosa! 🕷️💗", warn: "Até a Fantasma-Aranha cai antes de voar de novo. 🕸️" },
+    { key: "samcat", name: "Sam & Cat", short: "Sam & Cat", emoji: "🎀", deco: "🍭", quote: "Rir junto resolve qualquer confusão", good: "Dupla imbatível! Que dia divertido! 🎀", warn: "Até a Sam e a Cat se atrapalham às vezes. Amanhã a bagunça vira risada! 🍭" },
+    { key: "bluey", name: "Bluey", short: "Bluey", emoji: "🐾", deco: "🐶", quote: "Brincar é coisa séria. E ser gentil também", good: "Até o Bandit ficaria orgulhoso! 🐾", warn: "Todo dia é um jogo novo. Bora tentar de novo, Bluey! 🐶" },
   ];
-  const FINAL = { key: "final", name: "Grande Final", emoji: "🎄", deco: "🎅", quote: "O Papai Noel está chegando: a magia está em cada escolha", good: "Reta final brilhante! O trenó já está a caminho 🎄✨", warn: "Reta final: cada dia agora vale ouro para o Papai Noel! 🎁" };
+  const FINAL = { key: "final", name: "Grande Final", short: "Grande Final", emoji: "🎄", deco: "🎅", quote: "O Papai Noel está chegando: a magia está em cada escolha", good: "Reta final brilhante! O trenó já está a caminho 🎄✨", warn: "Reta final: cada dia agora vale ouro para o Papai Noel! 🎁" };
   const PERIODS = [{ key: "m", name: "Manhã", emoji: "☀️" }, { key: "t", name: "Tarde", emoji: "🌤️" }, { key: "n", name: "Noite", emoji: "🌙" }];
   const LEVELS = [{ v: -2, label: "Muito ruim", emoji: "⚡⚡" }, { v: -1, label: "Ruim", emoji: "⚡" }, { v: 0, label: "Neutro", emoji: "✦" }, { v: 1, label: "Bom", emoji: "⭐" }, { v: 2, label: "Ótimo", emoji: "🌟" }];
   const KIND = { verde: { label: "Maravilhosa!", emoji: "😊" }, amarelo: { label: "Pode melhorar", emoji: "😐" }, vermelho: { label: "Precisa pensar", emoji: "😞" }, vazio: { label: "Sem registro", emoji: "✨" } };
@@ -326,7 +333,7 @@
   const MONTHS = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
   const WDAYS = ["domingo", "segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado"];
 
-  const state = { cfg: { ...DEFAULTS }, days: {}, open: null, draft: null, dirty: false, saving: false, confirm: false, parent: false, db: null, loaded: false };
+  const state = { cfg: { ...DEFAULTS }, days: {}, open: null, draft: null, dirty: false, saving: false, confirm: false, parent: false, db: null, loaded: false, cached: false };
 
   /* ---------- datas ---------- */
   const pad = n => String(n).padStart(2, "0");
@@ -375,7 +382,7 @@
     }
     if (!o.n) lines.push("A missão está começando: o primeiro dia registrado abre o caminho para o " + state.cfg.prize + ".");
     else {
-      lines.push("Sua magia está em " + o.pct + "%" + (o.pct >= state.cfg.target ? " — acima da meta de " + state.cfg.target + "%! O " + state.cfg.prize + " está no caminho 📱✨" : " — faltam " + (state.cfg.target - o.pct) + " pontos para a meta de " + state.cfg.target + "%."));
+      lines.push("Sua magia está em " + o.pct + "%" + (o.pct >= state.cfg.target ? " — acima da meta de " + state.cfg.target + "%! O " + state.cfg.prize + " está no caminho 📱✨" : " — faltam " + (state.cfg.target - o.pct) + "% para chegar à meta de " + state.cfg.target + "%."));
       lines.push("Dias: " + o.g + " 😊 · " + o.y + " 😐 · " + o.r + " 😞. Sequência verde: " + streak() + " 🔥");
     }
     const left = diffDays(today, state.cfg.end);
@@ -397,7 +404,7 @@
     const endD = parseKey(state.cfg.end), endS = pad(endD.getDate()) + "/" + pad(endD.getMonth() + 1);
     if (!o.n) st.textContent = "O feitiço ainda não foi lançado. Comece registrando o primeiro dia.";
     else if (o.pct >= state.cfg.target) st.textContent = "🎉 O " + state.cfg.prize + " está no caminho! Continue brilhando até " + endS + " 🎉";
-    else { st.textContent = "A magia ainda precisa de mais dias bons. Você consegue, Jade! 💛"; st.classList.add("warn"); }
+    else { st.textContent = "A magia ainda precisa de mais dias bons. Você consegue, Jade! 💛"; st.classList.add("warn"); }
     $("ruleText").textContent = "Regra do feitiço: terminar a missão com " + state.cfg.target + "% ou mais de comportamento = " + state.cfg.prize + " garantido no Natal.";
     const s = streak(); $("tStreak").textContent = s + (s === 1 ? " dia" : " dias");
     $("tDays").textContent = o.n + "/" + o.total; $("tPts").textContent = (o.pts > 0 ? "+" : "") + o.pts;
@@ -418,7 +425,7 @@
       for (let k = first; k <= last; k = addDays(k, 1)) { const d = state.days[k]; if (!d) continue; const kd = kind(d); if (kd === "verde") g++; else if (kd === "amarelo") y++; else if (kd === "vermelho") r++; }
       const sec = document.createElement("section"); sec.className = "card week w-" + w.key + (w.fit ? " fit" : "");
       const title = w === FINAL ? "Grande Final" : "Semana " + (i + 1);
-      sec.innerHTML = '<div class="banner">' + (w.fit ? '<div class="bg" style="background-image:url(' + w.key + '.jpg)"></div><img class="fit" src="' + w.key + '.jpg" alt="">' : '') + '<div class="deco">' + w.deco + "<small>" + w.emoji + '</small></div><div class="t"><div class="tema">' + w.emoji + " Tema da semana — " + esc(w.name) + "</div><h3>" + title + "<small>" + fmtRange(first, last) + '</small></h3><div class="q">“' + esc(w.quote) + '”</div></div><div class="pills"><span class="pill g"><i>😊</i>' + g + '</span><span class="pill y"><i>😐</i>' + y + '</span><span class="pill r"><i>😞</i>' + r + '</span></div></div><div class="wk-body"><div class="dow"><span>SEG</span><span>TER</span><span>QUA</span><span>QUI</span><span>SEX</span><span>SÁB</span><span>DOM</span></div><div class="days"></div></div>';
+      sec.innerHTML = '<div class="banner">' + (w.fit ? '<div class="bg" style="background-image:url(' + w.key + '.jpg)"></div><img class="fit" src="' + w.key + '.jpg" alt="">' : '') + '<div class="deco">' + w.deco + "<small>" + w.emoji + '</small></div><div class="t"><div class="tema">' + w.emoji + " Tema da semana — " + esc(w.name) + "</div><h3>" + title + "<small>" + fmtRange(first, last) + '</small></h3><div class="q">“' + esc(w.quote) + '”</div><div class="pills"><span class="pill g"><i>😊</i>' + g + '</span><span class="pill y"><i>😐</i>' + y + '</span><span class="pill r"><i>😞</i>' + r + '</span></div></div></div><div class="wk-body"><div class="dow"><span>SEG</span><span>TER</span><span>QUA</span><span>QUI</span><span>SEX</span><span>SÁB</span><span>DOM</span></div><div class="days"></div></div>';
       const grid = sec.querySelector(".days");
       for (let j = 0; j < 7; j++) {
         const k = addDays(mon, j); const b = document.createElement("button"); b.type = "button";
@@ -436,7 +443,7 @@
   }
   function renderWorlds() {
     const cur = worldForDay(clampKey(todayKey()));
-    $("worlds").innerHTML = [...WORLDS, FINAL].map(w => '<div class="world' + (w.key === cur.key ? " now" : "") + '"><div class="av ' + w.key + '">' + "" + '</div><div class="nm">' + esc(w.name) + "</div></div>").join("");
+    $("worlds").innerHTML = [...WORLDS, FINAL].map(w => '<div class="world' + (w.key === cur.key ? " now" : "") + '"><div class="av ' + w.key + '">' + "" + '</div><div class="nm">' + esc(w.short || w.name) + "</div></div>").join("");
   }
   function renderAll() { renderTop(); renderWeeks(); renderWorlds(); if (state.open) renderSheet(); }
 
@@ -444,23 +451,29 @@
   function openDay(k) {
     if (!inRange(k)) return;
     state.open = k; state.draft = state.days[k] ? normDay(state.days[k]) : emptyDay(); state.dirty = false; state.confirm = false;
-    $("sheetWrap").classList.remove("hidden"); renderSheet(); document.body.style.overflow = "hidden";
+    $("sheetWrap").classList.remove("hidden"); renderSheet("#shClose"); document.body.style.overflow = "hidden";
+    try { document.querySelector(".wrap").inert = true; } catch (e) {}
   }
   function closeDay(force) {
     if (state.dirty && !force) { state.confirm = true; renderSheet(); return; }
+    const back = state.open;
     state.open = null; state.draft = null; state.dirty = false; state.confirm = false;
     $("sheetWrap").classList.add("hidden"); document.body.style.overflow = "";
+    try { document.querySelector(".wrap").inert = false; } catch (e) {}
+    const bd = $("day-" + back); if (bd) bd.focus({ preventScroll: true });
   }
-  function renderSheet() {
+  function autosize(ta) { ta.style.height = "auto"; ta.style.height = Math.min(ta.scrollHeight + 2, 320) + "px"; }
+  function renderSheet(focusSel) {
     const k = state.open, d = state.draft; if (!k || !d) return;
+    const body0 = document.querySelector("#sheet .sh-body"); const scroll0 = body0 ? body0.scrollTop : 0;
     const edit = state.parent && !!state.db; const kd = kind(d), sc = score(d), dt = parseKey(k), n = PERIODS.length;
-    let html = '<div class="sh-head"><div><div class="wd">' + WDAYS[dt.getDay()] + '</div><div class="dt">' + fmtLong(k) + '</div></div><button type="button" class="x" id="shClose" aria-label="Fechar">✕</button></div>';
+    let html = '<div class="sh-head"><div><div class="wd">' + WDAYS[dt.getDay()] + '</div><div class="dt" id="shDate">' + fmtLong(k) + '</div></div><button type="button" class="x" id="shClose" aria-label="Fechar">✕</button></div>';
     html += '<div class="sh-body"><div class="result ' + kd + '"><div class="big">' + KIND[kd].emoji + '</div><div class="lb">' + KIND[kd].label + '</div><div class="pt">' + (kd === "vazio" ? "Nenhum momento registrado ainda." : "Pontuação do dia: " + (sc.s > 0 ? "+" : "") + sc.s + " de " + (2 * n) + " possíveis") + "</div></div>";
     html += "<h4>🪄 Os " + n + ' momentos do dia</h4><div class="ins">' + (edit ? "Toque em uma estrela ou raio para registrar como ela se comportou em cada momento. Pode mudar a qualquer hora." : "Veja como foi cada momento do dia.") + "</div>";
     for (const p of PERIODS) {
       const v = d[p.key]; const L = v === null ? null : LEVELS.find(l => l.v === v);
-      html += '<div class="mrow' + (edit ? "" : " ro") + '"><div class="top"><span class="nm">' + p.emoji + " " + p.name + '</span><span class="lv ' + (L ? "c" + v : "") + '">' + (L ? L.label : "—") + '</span></div><div class="ic">';
-      for (const l of LEVELS) html += '<button type="button" data-p="' + p.key + '" data-v="' + l.v + '" class="' + (v === l.v ? "sel b" + l.v : "") + '">' + l.emoji + "</button>";
+      html += '<div class="mrow' + (edit ? "" : " ro") + '"><div class="top"><span class="nm">' + p.emoji + " " + p.name + '</span><span class="lv ' + (L ? "c" + v : "") + '">' + (L ? L.label : "—") + '</span></div><div class="ic" role="radiogroup" aria-label="' + p.name + '">';
+      for (const l of LEVELS) html += '<button type="button" role="radio" aria-checked="' + (v === l.v) + '" aria-label="' + l.label + '" data-p="' + p.key + '" data-v="' + l.v + '" class="' + (v === l.v ? "sel b" + l.v : "") + '">' + l.emoji + "</button>";
       html += "</div></div>";
     }
     html += "<h4>📜 Anotação do dia</h4>";
@@ -470,18 +483,21 @@
     html += "</div>";
     if (edit) {
       if (state.confirm) html += '<div class="sh-foot"><span class="msg">Descartar as alterações?</span><button type="button" class="btn" id="shBack">Voltar</button><button type="button" class="btn gold" id="shDiscard">Descartar</button></div>';
-      else html += '<div class="sh-foot"><button type="button" class="btn" id="shClear">Limpar</button><button type="button" class="btn gold" id="shSave"' + (state.dirty && !state.saving ? "" : " disabled") + ">" + (state.saving ? "Salvando…" : state.dirty ? "Salvar feitiço ✨" : "Salvo") + "</button></div>";
+      else html += '<div class="sh-foot"><button type="button" class="btn" id="shClear">Limpar</button><button type="button" class="btn gold" id="shSave"' + (state.dirty && !state.saving ? "" : " disabled") + ">" + (state.saving ? "Salvando…" : state.dirty ? "Salvar feitiço ✨" : kd === "vazio" ? "Nada para salvar" : "Salvo") + "</button></div>";
     }
     const sh = $("sheet"); sh.innerHTML = html;
+    const body1 = sh.querySelector(".sh-body"); if (body1) body1.scrollTop = scroll0;
     $("shClose").onclick = () => closeDay(false);
+    if (focusSel) { const fb = sh.querySelector(focusSel); if (fb) { fb.focus({ preventScroll: true }); if (fb.dataset.v !== undefined) fb.classList.add("cast"); } }
     if (!edit) return;
-    sh.querySelectorAll(".ic button").forEach(b => b.onclick = () => { const p = b.dataset.p, v = Number(b.dataset.v); state.draft[p] = state.draft[p] === v ? null : v; state.dirty = true; state.confirm = false; renderSheet(); });
+    const taA = $("noteIn"); if (taA) autosize(taA);
+    sh.querySelectorAll(".ic button").forEach(b => b.onclick = () => { const p = b.dataset.p, v = Number(b.dataset.v); state.draft[p] = state.draft[p] === v ? null : v; state.dirty = true; state.confirm = false; renderSheet('[data-p="' + p + '"][data-v="' + v + '"]'); });
     const ta = $("noteIn");
-    ta.oninput = () => { state.draft.note = ta.value.slice(0, 500); state.dirty = true; $("noteCnt").textContent = state.draft.note.length; const sv = $("shSave"); if (sv) { sv.disabled = state.saving; sv.textContent = state.saving ? "Salvando…" : "Salvar feitiço ✨"; } };
+    ta.oninput = () => { autosize(ta); state.draft.note = ta.value.slice(0, 500); state.dirty = true; $("noteCnt").textContent = state.draft.note.length; const sv = $("shSave"); if (sv) { sv.disabled = state.saving; sv.textContent = state.saving ? "Salvando…" : "Salvar feitiço ✨"; } };
     const c = $("shClear"); if (c) c.onclick = () => { state.draft = emptyDay(); state.dirty = true; renderSheet(); };
     const s = $("shSave"); if (s) s.onclick = saveDay;
     const bk = $("shBack"); if (bk) bk.onclick = () => { state.confirm = false; renderSheet(); };
-    const ds = $("shDiscard"); if (ds) ds.onclick = () => closeDay(true);
+    const ds = $("shDiscard"); if (ds) { ds.onclick = () => closeDay(true); ds.focus({ preventScroll: true }); }
   }
   async function saveDay() {
     if (!state.db || !state.draft || state.saving) return;
@@ -512,10 +528,22 @@
   async function lock() { if (state.db) { try { await state.db.auth.signOut(); } catch (e) {} } state.parent = false; if (state.open) closeDay(true); renderAll(); toast("Modo pai encerrado."); }
 
   /* ---------- banco de dados (Supabase) ---------- */
+  const CACHE_KEY = "diario.cache";
+  function loadCache() {
+    try {
+      const c = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
+      if (!c || !c.cfg || !c.days) return;
+      state.cfg = { ...DEFAULTS, ...c.cfg }; const days = {};
+      for (const k in c.days) if (/^\d{4}-\d{2}-\d{2}$/.test(k)) days[k] = normDay(c.days[k]);
+      state.days = days; state.cached = c.at || true;
+    } catch (e) {}
+  }
+  function saveCache() { try { localStorage.setItem(CACHE_KEY, JSON.stringify({ cfg: state.cfg, days: state.days, at: new Date().toISOString() })); } catch (e) {} }
+  function offlineBanner() { banner(state.cached ? "Sem internet agora — mostrando o último diário salvo neste aparelho." : "Não foi possível carregar o diário. Verifique a conexão e tente de novo.", true); }
   function banner(text, err) { const b = $("dbBanner"); if (!text) { b.classList.add("hidden"); return; } b.textContent = text; b.classList.remove("hidden"); b.classList.toggle("err", !!err); }
   async function loadCfg() {
     const { data: c, error } = await state.db.from("config").select("*").eq("id", "main").maybeSingle();
-    if (error) { banner("Não foi possível ler os ajustes: " + error.message, true); return; }
+    if (error) { offlineBanner(); return; }
     if (c) {
       state.cfg = {
         start: /^\d{4}-\d{2}-\d{2}$/.test(c.start_date) ? c.start_date : DEFAULTS.start,
@@ -525,14 +553,14 @@
       };
       if (state.cfg.end < state.cfg.start) state.cfg.end = state.cfg.start;
     }
-    fillSettings(); renderAll();
+    saveCache(); fillSettings(); renderAll();
   }
   async function loadDays() {
     const { data, error } = await state.db.from("days").select("date,m,t,n,note");
-    if (error) { banner("Não foi possível carregar o diário: " + error.message, true); return; }
+    if (error) { offlineBanner(); return; }
     const days = {};
     for (const r of data || []) if (/^\d{4}-\d{2}-\d{2}$/.test(r.date)) days[r.date] = normDay(r);
-    state.days = days; state.loaded = true; banner("");
+    state.days = days; state.loaded = true; state.cached = false; banner(""); saveCache();
     if (state.open && !state.dirty && !state.saving) state.draft = days[state.open] ? normDay(days[state.open]) : emptyDay();
     renderAll();
   }
@@ -540,7 +568,9 @@
   async function refresh() { if (!state.db || refreshing) return; refreshing = true; try { await Promise.all([loadCfg(), loadDays()]); } finally { refreshing = false; } }
   async function connect() {
     const C = window.DIARIO_CONFIG || {};
-    if (!window.supabase || typeof C.supabaseUrl !== "string" || !/^https:\/\//.test(C.supabaseUrl) || !C.supabaseAnonKey || /^COLE_/.test(C.supabaseAnonKey)) {
+    loadCache();
+    if (!window.supabase) { state.loaded = true; banner("Não consegui carregar a biblioteca do banco de dados. Verifique a internet e abra o app de novo.", true); renderAll(); return; }
+    if (typeof C.supabaseUrl !== "string" || !/^https:\/\//.test(C.supabaseUrl) || !C.supabaseAnonKey || /^COLE_/.test(C.supabaseAnonKey)) {
       state.loaded = true; banner("O diário ainda não está ligado ao banco de dados: preencha o arquivo config.js com a URL e a chave do Supabase.", true); renderAll(); return;
     }
     const timer = setTimeout(() => { if (!state.loaded) banner("Ainda carregando o diário… se demorar, confira a conexão."); }, 10000);
@@ -568,7 +598,7 @@
 
   /* ---------- utilidades ---------- */
   let toastT;
-  function toast(t) { const el = $("toast"); el.textContent = t; el.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove("show"), 2200); }
+  function toast(t) { const el = $("toast"); el.textContent = t; el.classList.toggle("up", !!state.open); el.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove("show"), 2200); }
   async function copyMessage() {
     const m = buildMessage(); const text = [m.greet, ...m.lines].join("\n");
     try { await navigator.clipboard.writeText(text); toast("Mensagem copiada!"); } catch (e) { toast("Não deu para copiar aqui. Selecione o texto e copie."); }
@@ -582,7 +612,7 @@
   $("sheetWrap").addEventListener("click", e => { if (e.target === $("sheetWrap")) closeDay(false); });
   $("copyMsg").onclick = copyMessage; $("goToday").onclick = goToday;
   $("saveCfg").onclick = saveCfg; $("lockNow").onclick = lock;
-  document.addEventListener("keydown", e => { if (e.key === "Escape" && state.open) closeDay(false); });
+  document.addEventListener("keydown", e => { if (e.key !== "Escape" || !state.open) return; if (state.confirm) { state.confirm = false; renderSheet("#shClose"); } else closeDay(false); });
 
   fillSettings(); renderAll(); connect();
   if ("serviceWorker" in navigator) window.addEventListener("load", () => { navigator.serviceWorker.register("./sw.js").catch(() => {}); });
