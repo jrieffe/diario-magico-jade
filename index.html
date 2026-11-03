@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="./fonts/fonts.css">
 <style>
   :root{
+    color-scheme: light;
     --bg: hsl(38 40% 92%); --fg: hsl(28 35% 18%); --muted: hsl(28 25% 38%);
     --card: hsl(38 45% 96%); --card-border: hsl(32 30% 65% / .55); --line: hsl(32 28% 78%);
     --gold: hsl(42 75% 45%); --gold-dark: hsl(40 70% 36%); --gold-light: hsl(45 85% 62%); --gold-pale: hsl(42 80% 88%);
@@ -38,7 +39,8 @@
   .wrap{max-width:600px;margin:0 auto;padding:0 14px 48px}
 
   /* ---------- capa ---------- */
-  .hero{position:relative;margin:0 -14px;height:330px;background:#1a1340 url(castle.jpg) center 35%/cover no-repeat;overflow:hidden}
+  .hero{position:relative;margin:0;height:330px;background:#1a1340 url(castle.jpg) center 35%/cover no-repeat;overflow:hidden}
+  .hero .inner{position:relative;max-width:600px;margin:0 auto;height:100%;z-index:2}
   .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,8,30,.15) 0%,rgba(10,8,30,.05) 35%,rgba(10,8,30,.55) 75%,var(--bg) 100%)}
   .hero .crest{position:absolute;top:calc(12px + env(safe-area-inset-top));right:16px;width:80px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.5));z-index:2}
   .hero .lock{position:absolute;top:calc(14px + env(safe-area-inset-top));left:14px;z-index:3;width:40px;height:40px;border-radius:50%;background:rgba(20,15,40,.45);color:#f3dd9a;font-size:18px;border:1px solid rgba(255,220,150,.35);backdrop-filter:blur(4px)}
@@ -134,7 +136,7 @@
   .badge.pos{background:hsl(130 55% 38%)} .badge.zero{background:hsl(30 90% 50%)} .badge.neg{background:hsl(0 70% 45%)}
   .day .face{font-size:24px;line-height:1;margin-top:6px}
   .day .face.e{opacity:.35;font-size:16px}
-  .day .notemark{position:absolute;top:3px;right:4px;font-size:10px;line-height:1}
+  .day .notemark{position:absolute;bottom:14px;right:3px;font-size:9px;line-height:1}
   .day .dots{position:absolute;bottom:5px;display:flex;gap:3px}
   .day .dots i{width:5px;height:5px;border-radius:50%;background:hsl(32 28% 72%)}
   .dots i.p{background:hsl(130 55% 42%)} .dots i.n{background:hsl(0 70% 50%)} .dots i.z{background:hsl(38 80% 55%)}
@@ -188,15 +190,15 @@
   .mrow .lv{font-family:var(--head);font-size:12px;font-weight:600}
   .mrow .ic{display:flex;justify-content:space-between;margin-top:8px;gap:4px}
   .mrow .ic button{flex:1;height:48px;border-radius:12px;border:2px solid transparent;font-size:21px;opacity:.5;transition:all .12s;background:transparent}
-  .mrow .ic{position:relative;padding:4px 0}
-  .mrow .ic::before{content:"";position:absolute;left:9%;right:9%;top:50%;height:3px;margin-top:-1px;border-radius:3px;background:linear-gradient(90deg,hsl(0 70% 72%),hsl(35 35% 78%) 50%,hsl(42 95% 62%));opacity:.6}
+  .mrow .ic{position:relative;padding:4px 0 10px;max-width:440px;margin:8px auto 0}
+  .mrow .ic::before{content:"";position:absolute;left:10%;right:10%;bottom:3px;height:4px;border-radius:3px;background:linear-gradient(90deg,hsl(0 70% 72%),hsl(35 35% 78%) 50%,hsl(42 95% 62%));opacity:.6}
   .mrow .ic button{position:relative;z-index:1}
   .mrow .ic button[data-v="-2"]{font-size:17px;letter-spacing:-5px}
   .mrow .ic button[data-v="-1"]{font-size:19px}
-  .mrow .ic button[data-v="0"]{font-size:20px}
+  .mrow .ic button[data-v="0"]{font-size:25px}
   .mrow .ic button[data-v="1"]{font-size:23px}
   .mrow .ic button[data-v="2"]{font-size:27px}
-  .mrow .ic button.sel.b-2{background:hsl(0 75% 93%)} .mrow .ic button.sel.b-1{background:hsl(15 70% 93%)} .mrow .ic button.sel.b0{background:hsl(35 30% 93%)} .mrow .ic button.sel.b1{background:hsl(42 85% 90%)} .mrow .ic button.sel.b2{background:hsl(42 95% 86%)}
+  .mrow .ic button.sel.b-2{background:hsl(0 78% 86%)} .mrow .ic button.sel.b-1{background:hsl(24 85% 87%)} .mrow .ic button.sel.b0{background:hsl(35 30% 90%)} .mrow .ic button.sel.b1{background:hsl(44 90% 84%)} .mrow .ic button.sel.b2{background:hsl(46 98% 74%)}
   .mrow .ic button{position:relative}
   @keyframes cast{0%{transform:scale(1)}45%{transform:scale(1.35)}100%{transform:scale(1.06)}}
   @keyframes spark{from{opacity:1;transform:translateY(0) scale(.6)}to{opacity:0;transform:translateY(-16px) scale(1.4)}}
@@ -225,12 +227,11 @@
   .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translate(-50%,20px);background:hsl(28 35% 18%);color:#fff;padding:10px 18px;border-radius:999px;font-size:15px;opacity:0;transition:all .25s;z-index:99;pointer-events:none;white-space:nowrap;max-width:92vw}
   .toast.show{opacity:1;transform:translate(-50%,0)}
   .toast.up{bottom:calc(100px + env(safe-area-inset-bottom))}
-  @media (min-width:1100px){.wrap{max-width:1040px}.hero{height:440px;margin:0 calc(50% - 50vw);background-position:center 30%}.hero .crest{right:calc(50vw - 520px + 16px)}.hero .lock{left:calc(50vw - 520px + 14px)}#weeks{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}#weeks .card{margin-top:0}.tiles{grid-template-columns:repeat(4,1fr)}}
+  @media (min-width:1100px){.wrap{max-width:1040px}.hero{height:440px;background-position:center 30%}.hero .inner{max-width:1040px}#weeks{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}#weeks .card{margin-top:0}.tiles{grid-template-columns:repeat(4,1fr)}}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header class="hero">
+<header class="hero"><div class="inner">
     <button id="lockBtn" class="lock" title="Modo pai">🔒</button>
     <img class="crest" src="crest.png" alt="">
     <div class="txt">
@@ -238,7 +239,8 @@
       <h1>O Diário Mágico<br>da Jade</h1>
       <div class="sub" id="heroSub">Missão iPhone 17 · Natal 2026</div>
     </div>
-  </header>
+</div></header>
+<div class="wrap">
   <p class="quote"><span id="quote">“A magia está em cada escolha.”</span><span class="by" id="quoteBy"></span></p>
 
   <div id="dbBanner" class="banner-db hidden"></div>
@@ -343,7 +345,7 @@
   const MONTHS = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
   const WDAYS = ["domingo", "segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado"];
 
-  const state = { cfg: { ...DEFAULTS }, days: {}, open: null, draft: null, dirty: false, saving: false, confirm: false, parent: false, db: null, loaded: false, cfgErr: "", cached: false };
+  const state = { cfg: { ...DEFAULTS }, days: {}, open: null, draft: null, dirty: false, saving: false, confirm: false, parent: false, db: null, loaded: false, cfgErr: "", cfgNote: "", cached: false };
 
   /* ---------- datas ---------- */
   const pad = n => String(n).padStart(2, "0");
@@ -396,18 +398,18 @@
       else { const s = score(yd).s; lines.push("Ontem foi um dia " + KIND[ykd].adj + " " + KIND[ykd].emoji + " (" + (s > 0 ? "+" : "") + s + (Math.abs(s) === 1 ? " ponto" : " pontos") + ")."); }
     }
     const t = state.cfg.target, ms = Math.min(7, o.total), ended = today > state.cfg.end;
-    if (!o.n) lines.push("A missão está começando: o primeiro dia registrado abre o caminho para " + state.cfg.prize + ".");
-    else if (ended) lines.push("A missão terminou com " + o.pct + "% (meta " + t + "%), em " + o.n + " dia" + (o.n > 1 ? "s" : "") + " registrado" + (o.n > 1 ? "s" : "") + ".");
+    if (ended) lines.push(o.n < ms ? "A missão terminou com só " + o.n + (o.n === 1 ? " dia registrado" : " dias registrados") + " — poucos para valer o prêmio. Mas que caminho bonito, Jade 💛" : "A missão terminou com " + o.pct + "% (meta " + t + "%), em " + o.n + (o.n === 1 ? " dia registrado." : " dias registrados."));
+    else if (!o.n) lines.push("A missão está começando: o primeiro dia registrado abre o caminho para " + state.cfg.prize + ".");
     else if (o.n < ms) lines.push("A magia está começando: " + o.n + " de " + ms + " dias registrados para a primeira leitura ✨");
     else {
       lines.push("Sua magia está em " + o.pct + "%" + (o.pct > t ? " — acima da meta de " + t + "%! Prêmio no caminho 🎁✨" : o.pct === t ? " — exatamente na meta de " + t + "%! 🎁✨" : " — faltam " + (t - o.pct) + "% para chegar à meta de " + t + "%."));
       lines.push("Dias: " + o.g + " 😊 · " + o.y + " 😐 · " + o.r + " 😞. Sequência verde: " + streak() + " 🔥");
     }
     const left = diffDays(today, state.cfg.end);
-    if (left > 0) lines.push("Faltam " + left + " dia" + (left > 1 ? "s" : "") + (isXmas() ? " para o Natal 🎄" : " para o grande dia 🎁"));
+    if (left > 0) lines.push((left > 1 ? "Faltam " : "Falta ") + left + " dia" + (left > 1 ? "s" : "") + (isXmas() ? " para o Natal 🎄" : " para o grande dia 🎁"));
     else if (left === 0) lines.push("Hoje é o grande dia! " + (isXmas() ? "🎄🎁" : "🎁"));
-    else lines.push(o.n >= ms && o.pct >= t ? "Missão encerrada e vencida! 🎁" : "A missão terminou. Orgulho do caminho 💛");
-    lines.push(ykd === "vermelho" || (o.n && o.pct < state.cfg.target) ? w.warn : w.good);
+    else lines.push(o.n >= ms && o.pct >= t ? "Missão encerrada e vencida! 🎁" : "Orgulho de cada passo do caminho 💛");
+    if (!ended) lines.push(ykd === "vermelho" || (o.n && o.pct < t) ? w.warn : w.good);
     return { greet, lines, w };
   }
 
@@ -428,6 +430,7 @@
     const st = $("status"); st.classList.remove("warn");
     if (over) {
       if (o.n >= minSample && o.pct >= t) st.textContent = "🎉 Missão cumprida com " + o.pct + "%! Prêmio conquistado: " + state.cfg.prize + " 🎁";
+      else if (o.n < minSample) { st.textContent = "A missão terminou com só " + o.n + (o.n === 1 ? " dia registrado" : " dias registrados") + " — poucos para valer o prêmio. Mas que caminho bonito, Jade 💛"; st.classList.add("warn"); }
       else { st.textContent = "A missão terminou com " + o.pct + "% (meta " + t + "%). Você aprendeu muito, Jade 💛"; st.classList.add("warn"); }
     }
     else if (!o.n) st.textContent = "O feitiço ainda não foi lançado. Comece registrando o primeiro dia.";
@@ -435,10 +438,15 @@
     else if (o.pct >= t) st.textContent = "🎉 Prêmio no caminho: " + state.cfg.prize + "! Continue brilhando até " + endS + " 🎉";
     else { st.textContent = "A magia ainda precisa de mais dias bons. Você consegue, Jade! 💛"; st.classList.add("warn"); }
     $("ruleText").textContent = "Regra do feitiço: terminar a missão com " + t + "% ou mais de dias bons = prêmio garantido (" + state.cfg.prize + ")" + (isXmas() ? " no Natal." : ".");
-    const s = streak(), bs = bestStreak(); $("tStreak").textContent = s + (s === 1 ? " dia" : " dias"); $("tStreakL").textContent = "Sequência verde" + (bs > s ? " · recorde " + bs : "");
+    const s = streak(), bs = bestStreak(); $("tStreak").textContent = s + (s === 1 ? " dia" : " dias"); $("tStreakL").textContent = bs > s ? "Sequência · recorde " + bs : "Sequência verde";
     $("tDays").textContent = o.n + "/" + o.total; $("tPts").textContent = (o.pts > 0 ? "+" : "") + o.pts;
     $("tGoal").textContent = endD.getDate() + " " + MONTHS[endD.getMonth()].slice(0, 3);
-    const m = buildMessage(); $("owl").innerHTML = "<b>" + esc(m.greet) + "</b>\n" + m.lines.map(esc).join("\n");
+    if (!state.loaded) {
+      st.classList.remove("warn"); st.textContent = "Abrindo o diário mágico… ✨";
+      $("cG").textContent = $("cY").textContent = $("cR").textContent = "–"; $("pct").textContent = "…"; $("fill").style.width = "0%";
+      $("tStreak").textContent = "…"; $("tStreakL").textContent = "Sequência verde"; $("tDays").textContent = "…/" + o.total; $("tPts").textContent = "…";
+      $("owl").textContent = "A coruja está trazendo a mensagem de hoje… 🦉";
+    } else { const m = buildMessage(); $("owl").innerHTML = "<b>" + esc(m.greet) + "</b>\n" + m.lines.map(esc).join("\n"); }
     const sy = parseKey(state.cfg.start).getFullYear(), ey = endD.getFullYear();
     $("footRange").textContent = sy === ey ? "De " + fmtLong(state.cfg.start) + " a " + fmtLong(state.cfg.end) + " de " + ey : "De " + fmtLong(state.cfg.start) + " de " + sy + " a " + fmtLong(state.cfg.end) + " de " + ey;
     $("lockBtn").classList.toggle("on", state.parent); $("lockBtn").textContent = state.parent ? "🔓" : "🔒";
@@ -465,7 +473,7 @@
         let html = '<span class="num">' + parseKey(k).getDate() + "</span>";
         if (kd !== "vazio") html += '<span class="badge ' + (sc > 0 ? "pos" : sc < 0 ? "neg" : "zero") + '">' + (sc > 0 ? "+" : "") + sc + "</span>";
         html += '<span class="face' + (kd === "vazio" ? " e" : "") + '">' + (kd === "vazio" ? (k > today ? "" : "✨") : KIND[kd].emoji) + "</span>";
-        if (kd === "vazio" && d && d.note) html += '<span class="notemark" title="Tem anotação">📜</span>';
+        if (d && d.note) html += '<span class="notemark" title="Tem anotação">📜</span>';
         html += '<span class="dots">' + PERIODS.map(p => { const v = d ? d[p.key] : null; return '<i class="' + (v === null ? "" : v > 0 ? "p" : v < 0 ? "n" : "z") + '"></i>'; }).join("") + "</span>";
         b.innerHTML = html; b.onclick = () => openDay(k); grid.appendChild(b);
       }
@@ -495,7 +503,7 @@
     $("sheetWrap").classList.add("hidden"); document.body.style.overflow = "";
     const tt = $("toast"); tt.classList.remove("up"); tt.style.bottom = "";
     try { document.querySelector(".wrap").inert = false; } catch (e) {}
-    const bd = $("day-" + back); if (bd) bd.focus({ preventScroll: true });
+    const bd = $("day-" + back) || $("day-" + clampKey(todayKey())) || $("goToday"); if (bd) bd.focus({ preventScroll: true });
   }
   function computeDirty() { const base = state.days[state.open] ? normDay(state.days[state.open]) : emptyDay(); state.dirty = JSON.stringify(normDay(state.draft)) !== JSON.stringify(base); }
   function autosize(ta) { ta.style.height = "auto"; ta.style.height = Math.min(ta.scrollHeight + 2, 420) + "px"; }
@@ -504,6 +512,7 @@
     const body0 = document.querySelector("#sheet .sh-body"); const scroll0 = body0 ? body0.scrollTop : 0;
     const prev = document.activeElement, sh0 = $("sheet");
     const keep = prev && sh0 && sh0.contains(prev) ? (prev.id ? "#" + prev.id : prev.dataset && prev.dataset.p !== undefined ? '[data-p="' + prev.dataset.p + '"][data-v="' + prev.dataset.v + '"]' : null) : null;
+    const selS = prev && prev.id === "noteIn" ? prev.selectionStart : null, selE = prev && prev.id === "noteIn" ? prev.selectionEnd : null;
     const edit = state.parent && !!state.db; const kd = kind(d), sc = score(d), dt = parseKey(k), n = PERIODS.length;
     let html = '<div class="sh-head"><div><div class="wd">' + WDAYS[dt.getDay()] + '</div><div class="dt" id="shDate">' + fmtLong(k) + '</div></div><button type="button" class="x" id="shClose" aria-label="Fechar">✕</button></div>';
     html += '<div class="sh-body"><div class="result ' + kd + '"><div class="big">' + KIND[kd].emoji + '</div><div class="lb">' + KIND[kd].label + '</div><div class="pt">' + (kd === "vazio" ? "Nenhum momento registrado ainda." : "Pontuação do dia: " + (sc.s > 0 ? "+" : "") + sc.s + " de " + (2 * n) + " possíveis" + (sc.c < n ? " · registro parcial (" + sc.c + " de " + n + " momentos)" : "")) + "</div></div>";
@@ -512,7 +521,7 @@
     for (const p of PERIODS) {
       const v = d[p.key]; const L = v === null ? null : LEVELS.find(l => l.v === v);
       html += '<div class="mrow' + (edit ? "" : " ro") + '"><div class="top"><span class="nm">' + p.emoji + " " + p.name + '</span><span class="lv ' + (L ? "c" + v : "") + '">' + (L ? L.label : "—") + '</span></div><div class="ic" role="radiogroup" aria-label="' + p.name + '">';
-      for (const l of LEVELS) html += '<button type="button" role="radio" tabindex="' + ((v === null ? l.v === 0 : v === l.v) ? 0 : -1) + '" aria-checked="' + (v === l.v) + '" aria-label="' + l.label + '" data-p="' + p.key + '" data-v="' + l.v + '" class="' + (v === l.v ? "sel b" + l.v : "") + '">' + l.emoji + "</button>";
+      for (const l of LEVELS) html += '<button type="button" role="radio"' + (edit ? "" : " disabled") + ' tabindex="' + ((v === null ? l.v === 0 : v === l.v) ? 0 : -1) + '" aria-checked="' + (v === l.v) + '" aria-label="' + l.label + '" data-p="' + p.key + '" data-v="' + l.v + '" class="' + (v === l.v ? "sel b" + l.v : "") + '">' + l.emoji + "</button>";
       html += "</div></div>";
     }
     html += "<h4>📜 Anotação do dia</h4>";
@@ -527,7 +536,8 @@
     const body1 = sh.querySelector(".sh-body"); if (body1) body1.scrollTop = scroll0;
     $("shClose").onclick = () => closeDay(false);
     const fsel = focusSel || keep;
-    if (fsel) { const fb = sh.querySelector(fsel); if (fb) { fb.focus({ preventScroll: true }); if (focusSel && fb.dataset.v !== undefined) fb.classList.add("cast"); } }
+    if (fsel) { const fb = sh.querySelector(fsel); if (fb && !fb.disabled) { fb.focus({ preventScroll: true }); if (selS !== null && fb.setSelectionRange) { try { fb.setSelectionRange(selS, selE); } catch (e) {} } if (focusSel && fb.dataset.v !== undefined) fb.classList.add("cast"); } }
+    if (!sh.contains(document.activeElement)) { const xc = $("shClose"); if (xc) xc.focus({ preventScroll: true }); }
     if (!edit) return;
     const taA = $("noteIn"); if (taA) autosize(taA);
     sh.querySelectorAll(".ic button").forEach(b => b.onclick = () => { const p = b.dataset.p, v = Number(b.dataset.v); state.draft[p] = state.draft[p] === v ? null : v; computeDirty(); state.confirm = false; renderSheet('[data-p="' + p + '"][data-v="' + v + '"]'); });
@@ -559,7 +569,7 @@
 
   /* ---------- login do papai ---------- */
   function openLogin() { $("loginModal").classList.remove("hidden"); $("loginErr").textContent = ""; setTimeout(() => $("loginEmail").focus(), 50); }
-  function closeLogin() { $("loginModal").classList.add("hidden"); }
+  function closeLogin() { $("loginModal").classList.add("hidden"); $("lockBtn").focus({ preventScroll: true }); }
   async function tryLogin() {
     if (!state.db) { $("loginErr").textContent = "O banco de dados ainda não foi configurado."; return; }
     const email = $("loginEmail").value.trim(), password = $("loginPass").value;
@@ -590,7 +600,7 @@
   async function loadCfg() {
     const { data: c, error } = await state.db.from("config").select("*").eq("id", "main").abortSignal(timeoutSignal(6000)).maybeSingle();
     if (error) { state.cfgErr = "offline"; offlineBanner(); return; }
-    state.cfgErr = "";
+    state.cfgErr = ""; state.cfgNote = c ? "" : "Os ajustes da missão ainda não foram criados. Mostrando o período padrão.";
     if (c) {
       state.cfg = {
         start: isKey(c.start_date) ? c.start_date : DEFAULTS.start,
@@ -599,8 +609,9 @@
         prize: typeof c.prize === "string" && c.prize.trim() ? c.prize.trim().slice(0, 40) : DEFAULTS.prize,
       };
       if (state.cfg.end < state.cfg.start) state.cfg.end = state.cfg.start;
-      if (diffDays(state.cfg.start, state.cfg.end) + 1 > 120) state.cfg.end = addDays(state.cfg.start, 119);
+      if (diffDays(state.cfg.start, state.cfg.end) + 1 > 120) { state.cfg.end = addDays(state.cfg.start, 119); state.cfgNote = "A missão foi limitada a 120 dias: o fim passou para " + fmtLong(state.cfg.end) + "."; }
     }
+    if (state.open && !inRange(state.open)) closeDay(true);
     saveCache(); fillSettings(); renderAll();
   }
   async function loadDays() {
@@ -608,7 +619,7 @@
     if (error) { offlineBanner(); return; }
     const days = {};
     for (const r of data || []) if (isKey(r.date)) days[r.date] = normDay(r);
-    state.days = days; state.loaded = true; state.cached = false; if (state.cfgErr) offlineBanner(); else banner(""); saveCache();
+    state.days = days; state.loaded = true; state.cached = false; if (state.cfgErr) offlineBanner(); else banner(state.cfgNote, false); saveCache();
     if (state.open && !state.dirty && !state.saving) state.draft = days[state.open] ? normDay(days[state.open]) : emptyDay();
     renderAll();
   }
@@ -663,10 +674,14 @@
   $("loginPass").addEventListener("keydown", e => { if (e.key === "Enter") tryLogin(); });
   $("loginModal").addEventListener("click", e => { if (e.target === $("loginModal")) closeLogin(); });
   $("sheetWrap").addEventListener("click", e => { if (e.target === $("sheetWrap")) closeDay(false); });
+  $("weeks").addEventListener("pointerdown", e => { const d = e.target.closest(".day.future"); if (d) toast("Esse dia ainda não chegou! ✨"); });
   $("copyMsg").onclick = copyMessage; $("goToday").onclick = goToday;
   $("worlds").addEventListener("scroll", worldsFade, { passive: true }); window.addEventListener("resize", worldsFade);
   $("saveCfg").onclick = saveCfg; $("lockNow").onclick = lock;
-  document.addEventListener("keydown", e => { if (e.key === "Escape") { const pm = $("pinModal") || $("loginModal"); if (pm && !pm.classList.contains("hidden")) { pm.classList.add("hidden"); return; } }
+  let dayW = todayKey();
+  function checkDay() { const k = todayKey(); if (k !== dayW) { dayW = k; renderAll(); } }
+  setInterval(checkDay, 30000); document.addEventListener("visibilitychange", () => { if (!document.hidden) checkDay(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") { const pm = $("pinModal") || $("loginModal"); if (pm && !pm.classList.contains("hidden")) { pm.classList.add("hidden"); $("lockBtn").focus({ preventScroll: true }); return; } }
     if (e.key === "Tab" && state.open) {
       const fs = [...$("sheet").querySelectorAll("button:not([disabled]):not([tabindex=\"-1\"]),textarea:not([readonly])")].filter(x => x.offsetParent !== null);
       if (fs.length) { const first = fs[0], last = fs[fs.length - 1], a = document.activeElement;
