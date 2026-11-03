@@ -36,7 +36,6 @@
   input,textarea{font:inherit;color:inherit}
   .hidden{display:none !important}
   .wrap{max-width:600px;margin:0 auto;padding:0 14px 48px}
-  @media (min-width:1100px){.wrap{max-width:1040px}.hero{height:380px}#weeks{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}#weeks .card{margin-top:0}.tiles{grid-template-columns:repeat(4,1fr)}}
 
   /* ---------- capa ---------- */
   .hero{position:relative;margin:0 -14px;height:330px;background:#1a1340 url(castle.jpg) center 35%/cover no-repeat;overflow:hidden}
@@ -61,7 +60,7 @@
   .bar{position:relative;margin-top:16px;height:40px;border-radius:999px;background:hsl(35 25% 88%);border:1px solid hsl(42 60% 60%);box-shadow:inset 0 2px 4px rgba(0,0,0,.08);overflow:visible}
   .bar .fill{position:absolute;left:0;top:0;bottom:0;border-radius:999px;background:linear-gradient(90deg,#f5d978,#e4b53a 60%,#d49a1f);box-shadow:inset 0 -3px 0 rgba(0,0,0,.08),0 0 14px rgba(228,181,58,.45);transition:width .6s ease;min-width:0}
   .bar .fill::before{content:"✨";position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.9}
-  .bar .pct{position:absolute;right:50px;top:50%;transform:translateY(-50%);font-family:var(--head);font-weight:700;font-size:14px;color:var(--fg)}
+  .bar .pct{position:absolute;top:50%;transform:translateY(-50%);font-family:var(--head);font-weight:700;font-size:14px;color:var(--fg);white-space:nowrap}
   .bar .end{position:absolute;right:-2px;top:-3px;width:44px;height:44px;border-radius:50%;background:var(--card);border:1px solid hsl(42 60% 60%);display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:var(--shadow)}
 
   .counts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
@@ -101,7 +100,7 @@
   .banner .deco{position:absolute;right:16px;top:14px;font-size:62px;line-height:1;filter:drop-shadow(0 4px 8px rgba(0,0,0,.4));z-index:1}
   .banner .deco small{display:block;font-size:34px;text-align:right;margin-top:-6px}
   .banner .t{position:absolute;left:16px;right:16px;bottom:12px;z-index:1}
-  .banner .tema{display:inline-block;max-width:100%;box-sizing:border-box;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:var(--head);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:rgba(18,10,40,.86);border:1px solid rgba(255,220,150,.35);padding:4px 10px;border-radius:999px;margin-bottom:7px}
+  .banner .tema{display:inline-block;max-width:100%;box-sizing:border-box;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:var(--head);font-weight:700;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:#15102c;border:1px solid rgba(255,220,150,.45);padding:4px 11px;border-radius:999px;margin-bottom:7px}
   .banner h3{font-family:var(--head);font-weight:700;font-size:25px;line-height:1.1;margin-top:0;text-shadow:0 2px 6px rgba(0,0,0,.8)}
   .banner h3 small{display:block;font-family:var(--head);font-size:11.5px;letter-spacing:.12em;opacity:.92;margin-top:3px;font-weight:500;white-space:nowrap}
   .banner .q{font-style:italic;font-size:14px;margin-top:4px;text-shadow:0 1px 4px rgba(0,0,0,.8);opacity:.95}
@@ -140,11 +139,15 @@
   .day .dots i{width:5px;height:5px;border-radius:50%;background:hsl(32 28% 72%)}
   .dots i.p{background:hsl(130 55% 42%)} .dots i.n{background:hsl(0 70% 50%)} .dots i.z{background:hsl(38 80% 55%)}
 
-  .worlds{display:flex;gap:10px;overflow-x:auto;padding:14px 2px 6px;scrollbar-width:none;scroll-snap-type:x proximity;-webkit-mask-image:linear-gradient(90deg,#000 86%,transparent);mask-image:linear-gradient(90deg,#000 86%,transparent)}
+  .worlds{display:flex;gap:10px;overflow-x:auto;padding:14px 2px 6px;scrollbar-width:none;scroll-snap-type:x proximity;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 86%,transparent)}
+  .worlds.at-start{-webkit-mask-image:linear-gradient(90deg,#000 86%,transparent);mask-image:linear-gradient(90deg,#000 86%,transparent)}
+  .worlds.at-end{-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%);mask-image:linear-gradient(90deg,transparent,#000 7%)}
+  .worlds.at-start.at-end{-webkit-mask-image:none;mask-image:none}
+  .worlds:focus-visible{-webkit-mask-image:none;mask-image:none}
   .worlds::-webkit-scrollbar{display:none}
   .world{flex:none;width:76px;text-align:center;scroll-snap-align:start}
   .world .av{width:62px;height:62px;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:30px;border:3px solid;box-shadow:var(--shadow);overflow:hidden;background-size:cover;background-position:center}
-  .world .nm{font-family:var(--head);font-size:9px;letter-spacing:.04em;text-transform:uppercase;margin-top:6px;color:var(--gold-dark);line-height:1.15;min-height:2.3em;max-height:3.5em;overflow:hidden;overflow-wrap:anywhere}
+  .world .nm{font-family:var(--head);font-size:9px;letter-spacing:.04em;text-transform:uppercase;margin-top:6px;color:var(--gold-dark);line-height:1.15;min-height:2.3em;overflow-wrap:anywhere}
   .world.now .av{box-shadow:0 0 0 3px #fff,0 0 0 5px var(--gold)}
   .av.hp{background:url(crest.png) center/cover,#3a1d4e;border-color:#b8902e} .av.sw{background:url(sw.jpg) center/cover;border-color:#4f8cff} .av.ppg{background:url(ppg.jpg) center/cover;border-color:#ff6fb0} .av.mario{background:url(mario.jpg) center 40%/cover;border-color:#e52521} .av.gwen{background:url(gwen.jpg) 35% 15%/cover;border-color:#4fd8d0} .av.samcat{background:url(samcat.jpg) center 25%/cover;border-color:#ff5fa5} .av.bluey{background:url(bluey.jpg) center/cover;border-color:#3b8de0} .av.final{background:url(final.jpg) center 75%/cover;border-color:#e9c35a}
 
@@ -214,6 +217,7 @@
   .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translate(-50%,20px);background:hsl(28 35% 18%);color:#fff;padding:10px 18px;border-radius:999px;font-size:15px;opacity:0;transition:all .25s;z-index:99;pointer-events:none;white-space:nowrap;max-width:92vw}
   .toast.show{opacity:1;transform:translate(-50%,0)}
   .toast.up{bottom:calc(100px + env(safe-area-inset-bottom))}
+  @media (min-width:1100px){.wrap{max-width:1040px}.hero{height:380px}#weeks{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}#weeks .card{margin-top:0}.tiles{grid-template-columns:repeat(4,1fr)}}
 </style>
 </head>
 <body>
@@ -274,7 +278,7 @@
   <section class="card">
     <h2><span class="ico">✨</span>Os mundos da missão</h2>
     <div class="sub">Sete semanas de aventura e a Grande Final. Deslize para ver todos.</div>
-    <div class="worlds" id="worlds"></div>
+    <div class="worlds" id="worlds" tabindex="0" aria-label="Mundos da missão: deslize para ver todos"></div>
   </section>
 
   <section class="card hidden" id="settingsCard">
@@ -326,7 +330,7 @@
   const finalWorld = () => (isXmas() ? FINAL_XMAS : FINAL_PLAIN);
   const PERIODS = [{ key: "m", name: "Manhã", emoji: "☀️" }, { key: "t", name: "Tarde", emoji: "🌤️" }, { key: "n", name: "Noite", emoji: "🌙" }];
   const LEVELS = [{ v: -2, label: "Muito ruim", emoji: "⚡⚡" }, { v: -1, label: "Ruim", emoji: "⚡" }, { v: 0, label: "Neutro", emoji: "✦" }, { v: 1, label: "Bom", emoji: "⭐" }, { v: 2, label: "Ótimo", emoji: "🌟" }];
-  const KIND = { verde: { label: "Maravilhosa!", emoji: "😊" }, amarelo: { label: "Pode melhorar", emoji: "😐" }, vermelho: { label: "Precisa pensar", emoji: "😞" }, vazio: { label: "Sem registro", emoji: "✨" } };
+  const KIND = { verde: { label: "Maravilhosa!", adj: "maravilhoso", emoji: "😊" }, amarelo: { label: "Pode melhorar", adj: "que podia ser melhor", emoji: "😐" }, vermelho: { label: "Precisa pensar", adj: "difícil", emoji: "😞" }, vazio: { label: "Sem registro", adj: "sem registro", emoji: "✨" } };
   const DEFAULTS = { start: "2026-11-02", end: "2026-12-24", target: 80, prize: "iPhone 17" };
   const MONTHS = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
   const WDAYS = ["domingo", "segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado"];
@@ -364,13 +368,13 @@
     return { g, y, r, n, pts, pct, total: diffDays(state.cfg.start, state.cfg.end) + 1 };
   }
   function streak() {
-    let k = clampKey(todayKey());
+    let k = todayKey(); if (k < state.cfg.start) return 0; if (k > state.cfg.end) k = state.cfg.end;
     if (!state.days[k] || kind(state.days[k]) === "vazio") k = addDays(k, -1);
     let n = 0; while (k >= state.cfg.start && state.days[k] && kind(state.days[k]) === "verde") { n++; k = addDays(k, -1); }
     return n;
   }
 
-  function bestStreak() { let best = 0, cur = 0; for (let k = state.cfg.start; k <= state.cfg.end; k = addDays(k, 1)) { const d = state.days[k]; if (d && kind(d) === "verde") { cur++; if (cur > best) best = cur; } else if (d && kind(d) !== "vazio") cur = 0; } return best; }
+  function bestStreak() { const today = todayKey(); let best = 0, cur = 0; for (let k = state.cfg.start; k <= state.cfg.end && k <= today; k = addDays(k, 1)) { const d = state.days[k]; if (d && kind(d) === "verde") { cur++; if (cur > best) best = cur; } else cur = 0; } return best; }
   const isXmas = () => /-12-2[45]$/.test(state.cfg.end);
 
   /* ---------- mensagem ---------- */
@@ -381,18 +385,20 @@
     const yk = addDays(today, -1); const yd = state.days[yk]; const ykd = yd ? kind(yd) : "vazio";
     if (inRange(yk)) {
       if (ykd === "vazio") lines.push("Ontem ainda não foi registrado.");
-      else { const s = score(yd).s; lines.push("Ontem foi um dia " + KIND[ykd].emoji + " " + KIND[ykd].label.replace("!", "") + " (" + (s > 0 ? "+" : "") + s + " pontos)."); }
+      else { const s = score(yd).s; lines.push("Ontem foi um dia " + KIND[ykd].adj + " " + KIND[ykd].emoji + " (" + (s > 0 ? "+" : "") + s + (Math.abs(s) === 1 ? " ponto" : " pontos") + ")."); }
     }
+    const t = state.cfg.target, ms = Math.min(7, o.total), ended = today > state.cfg.end;
     if (!o.n) lines.push("A missão está começando: o primeiro dia registrado abre o caminho para " + state.cfg.prize + ".");
+    else if (ended) lines.push("A missão terminou com " + o.pct + "% (meta " + t + "%), em " + o.n + " dia" + (o.n > 1 ? "s" : "") + " registrado" + (o.n > 1 ? "s" : "") + ".");
+    else if (o.n < ms) lines.push("A magia está começando: " + o.n + " de " + ms + " dias registrados para a primeira leitura ✨");
     else {
-      const t = state.cfg.target;
       lines.push("Sua magia está em " + o.pct + "%" + (o.pct > t ? " — acima da meta de " + t + "%! Prêmio no caminho 🎁✨" : o.pct === t ? " — exatamente na meta de " + t + "%! 🎁✨" : " — faltam " + (t - o.pct) + "% para chegar à meta de " + t + "%."));
       lines.push("Dias: " + o.g + " 😊 · " + o.y + " 😐 · " + o.r + " 😞. Sequência verde: " + streak() + " 🔥");
     }
     const left = diffDays(today, state.cfg.end);
     if (left > 0) lines.push("Faltam " + left + " dia" + (left > 1 ? "s" : "") + (isXmas() ? " para o Natal 🎄" : " para o grande dia 🎁"));
-    else if (left === 0) lines.push("Hoje é o grande dia! 🎄🎁");
-    else lines.push(o.n && o.pct >= state.cfg.target ? "Missão encerrada e vencida! 🎁" : "A missão terminou. Orgulho do caminho 💛");
+    else if (left === 0) lines.push("Hoje é o grande dia! " + (isXmas() ? "🎄🎁" : "🎁"));
+    else lines.push(o.n >= ms && o.pct >= t ? "Missão encerrada e vencida! 🎁" : "A missão terminou. Orgulho do caminho 💛");
     lines.push(ykd === "vermelho" || (o.n && o.pct < state.cfg.target) ? w.warn : w.good);
     return { greet, lines, w };
   }
@@ -408,11 +414,12 @@
     const endD = parseKey(state.cfg.end), endS = pad(endD.getDate()) + "/" + pad(endD.getMonth() + 1), t = state.cfg.target;
     const today = todayKey(), over = today > state.cfg.end, minSample = Math.min(7, o.total);
     $("heroSub").textContent = "Missão " + state.cfg.prize + " · " + (isXmas() ? "Natal " : "") + endD.getFullYear();
-    $("fill").style.width = o.pct + "%"; $("pct").textContent = o.pct + "%";
+    $("fill").style.width = o.pct + "%"; const pe = $("pct"); pe.textContent = o.pct + "%";
+    if (o.pct >= 24) { pe.style.left = ""; pe.style.right = "max(calc(" + (100 - o.pct) + "% + 10px), 54px)"; } else { pe.style.right = ""; pe.style.left = "calc(" + o.pct + "% + 10px)"; }
     $("cG").textContent = o.g; $("cY").textContent = o.y; $("cR").textContent = o.r;
     const st = $("status"); st.classList.remove("warn");
     if (over) {
-      if (o.n && o.pct >= t) st.textContent = "🎉 Missão cumprida com " + o.pct + "%! Prêmio conquistado: " + state.cfg.prize + " 🎁";
+      if (o.n >= minSample && o.pct >= t) st.textContent = "🎉 Missão cumprida com " + o.pct + "%! Prêmio conquistado: " + state.cfg.prize + " 🎁";
       else { st.textContent = "A missão terminou com " + o.pct + "% (meta " + t + "%). Você aprendeu muito, Jade 💛"; st.classList.add("warn"); }
     }
     else if (!o.n) st.textContent = "O feitiço ainda não foi lançado. Comece registrando o primeiro dia.";
@@ -437,7 +444,7 @@
       const w = i === lastIdx ? finalWorld() : WORLDS[i % WORLDS.length];
       const first = mon < state.cfg.start ? state.cfg.start : mon, last = addDays(mon, 6) > state.cfg.end ? state.cfg.end : addDays(mon, 6);
       let g = 0, y = 0, r = 0;
-      for (let k = first; k <= last; k = addDays(k, 1)) { const d = state.days[k]; if (!d) continue; const kd = kind(d); if (kd === "verde") g++; else if (kd === "amarelo") y++; else if (kd === "vermelho") r++; }
+      for (let k = first; k <= last && k <= today; k = addDays(k, 1)) { const d = state.days[k]; if (!d) continue; const kd = kind(d); if (kd === "verde") g++; else if (kd === "amarelo") y++; else if (kd === "vermelho") r++; }
       const sec = document.createElement("section"); sec.className = "card week w-" + w.key;
       const title = i === lastIdx ? "Grande Final" : "Semana " + (i + 1);
       sec.innerHTML = '<div class="banner"><div class="deco">' + w.deco + "<small>" + w.emoji + '</small></div><div class="t"><div class="tema">' + w.emoji + " Tema: " + esc(w.name) + "</div><h3>" + title + "<small>" + fmtRange(first, last) + '</small></h3><div class="q">“' + esc(w.quote) + '”</div><div class="pills"><span class="pill g"><i>😊</i>' + g + '</span><span class="pill y"><i>😐</i>' + y + '</span><span class="pill r"><i>😞</i>' + r + '</span></div></div></div><div class="wk-body"><div class="dow"><span>SEG</span><span>TER</span><span>QUA</span><span>QUI</span><span>SEX</span><span>SÁB</span><span>DOM</span></div><div class="days"></div></div>';
@@ -445,7 +452,7 @@
       for (let j = 0; j < 7; j++) {
         const k = addDays(mon, j); const b = document.createElement("button"); b.type = "button";
         if (!inRange(k)) { b.className = "day blank"; b.disabled = true; grid.appendChild(b); continue; }
-        const d = state.days[k]; const kd = d ? kind(d) : "vazio"; const sc = d ? score(d).s : 0;
+        const d = k > today ? null : state.days[k]; const kd = d ? kind(d) : "vazio"; const sc = d ? score(d).s : 0;
         b.className = "day " + kd + (k === today ? " today" : "") + (k > today ? " future" : ""); b.id = "day-" + k; b.disabled = k > today;
         let html = '<span class="num">' + parseKey(k).getDate() + "</span>";
         if (kd !== "vazio") html += '<span class="badge ' + (sc > 0 ? "pos" : sc < 0 ? "neg" : "zero") + '">' + (sc > 0 ? "+" : "") + sc + "</span>";
@@ -461,7 +468,8 @@
     const cur = worldForDay(clampKey(todayKey()));
     $("worlds").innerHTML = [...WORLDS, finalWorld()].map(w => '<div class="world' + (w.key === cur.key ? " now" : "") + '"><div class="av ' + w.key + '">' + "" + '</div><div class="nm">' + esc(w.short || w.name) + "</div></div>").join("");
   }
-  function renderAll() { renderTop(); renderWeeks(); renderWorlds(); if (state.open) renderSheet(); }
+  function worldsFade() { const el = $("worlds"); const max = el.scrollWidth - el.clientWidth; el.classList.toggle("at-start", el.scrollLeft <= 2); el.classList.toggle("at-end", el.scrollLeft >= max - 2); }
+  function renderAll() { renderTop(); renderWeeks(); renderWorlds(); worldsFade(); if (state.open) renderSheet(); }
 
   /* ---------- gaveta do dia ---------- */
   function openDay(k) {
@@ -570,6 +578,7 @@
         prize: typeof c.prize === "string" && c.prize.trim() ? c.prize.trim().slice(0, 40) : DEFAULTS.prize,
       };
       if (state.cfg.end < state.cfg.start) state.cfg.end = state.cfg.start;
+      if (diffDays(state.cfg.start, state.cfg.end) + 1 > 120) state.cfg.end = addDays(state.cfg.start, 119);
     }
     saveCache(); fillSettings(); renderAll();
   }
@@ -609,8 +618,9 @@
     if (!isKey(start) || !isKey(end) || end < start) { $("cfgState").textContent = "Datas inválidas."; return; }
     if (!(target >= 50 && target <= 100)) { $("cfgState").textContent = "Meta entre 50 e 100."; return; }
     if (diffDays(start, end) + 1 > 120) { $("cfgState").textContent = "A missão pode ter no máximo 120 dias."; return; }
+    if (!prize) { $("cfgState").textContent = "Dê um nome ao prêmio."; return; }
     $("cfgState").textContent = "Salvando…";
-    const { error } = await state.db.from("config").upsert({ id: "main", start_date: start, end_date: end, target: Math.round(target), prize: prize || DEFAULTS.prize });
+    const { error } = await state.db.from("config").upsert({ id: "main", start_date: start, end_date: end, target: Math.round(target), prize: prize.slice(0, 40) });
     $("cfgState").textContent = error ? "Sem permissão ou erro ao salvar." : "Ajustes salvos ✓";
     if (!error) loadCfg();
   }
@@ -630,6 +640,7 @@
   $("loginModal").addEventListener("click", e => { if (e.target === $("loginModal")) closeLogin(); });
   $("sheetWrap").addEventListener("click", e => { if (e.target === $("sheetWrap")) closeDay(false); });
   $("copyMsg").onclick = copyMessage; $("goToday").onclick = goToday;
+  $("worlds").addEventListener("scroll", worldsFade, { passive: true }); window.addEventListener("resize", worldsFade);
   $("saveCfg").onclick = saveCfg; $("lockNow").onclick = lock;
   document.addEventListener("keydown", e => { if (e.key !== "Escape" || !state.open) return; if (state.confirm) { state.confirm = false; renderSheet("#shClose"); } else closeDay(false); });
 
