@@ -1,6 +1,6 @@
 /* Service worker do Diário Mágico da Jade.
    Troque VERSION a cada publicação: o cache antigo é apagado e a casca é baixada de novo. */
-const VERSION = "diario-2026-11-03e";
+const VERSION = "diario-2026-11-03f";
 const SHELL = [
   "./", "./index.html", "./config.js", "./manifest.webmanifest", "./favicon.png",
   "./vendor/supabase.min.js", "./fonts/fonts.css",
@@ -22,7 +22,7 @@ async function precache() {
 
 self.addEventListener("install", e => { e.waitUntil(precache().then(() => self.skipWaiting())); });
 self.addEventListener("activate", e => {
-  e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== VERSION).map(k => caches.delete(k)))).then(() => self.clients.claim()));
+  e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== VERSION && k.startsWith("diario-")).map(k => caches.delete(k)))).then(() => self.clients.claim()));
 });
 
 function isShellPage(url) {
@@ -52,7 +52,7 @@ self.addEventListener("fetch", e => {
     const refresh = fetch(req).then(r => {
       if (r.ok) { const copy = r.clone(); caches.open(VERSION).then(c => c.put(req, copy)); }
       return r;
-    }).catch(() => hit);
+    }).catch(() => hit || Response.error());
     return hit || refresh;
   }));
 });

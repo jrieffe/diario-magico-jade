@@ -76,7 +76,7 @@
   .tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
   .tile{background:var(--card);border:1px solid var(--card-border);border-radius:var(--r);padding:16px 8px;text-align:center;box-shadow:var(--shadow)}
   .tile .e{font-size:28px;line-height:1}
-  .tile .v{font-family:var(--head);font-weight:700;font-size:22px;color:var(--gold);margin-top:6px;line-height:1.1}
+  .tile .v{font-family:var(--head);font-weight:700;font-size:22px;color:var(--gold);margin-top:6px;line-height:1.1;white-space:nowrap}
   .tile .l{font-family:var(--head);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:4px}
 
   .owl{white-space:pre-line;margin-top:12px;font-size:16.5px;line-height:1.5}
@@ -156,9 +156,9 @@
   .banner-db.err{background:var(--bad-bg);border-color:hsl(0 60% 65%)}
 
   /* ---------- ajustes ---------- */
-  .form{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+  .form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
   .form label{font-family:var(--head);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:flex;flex-direction:column;gap:4px}
-  .form input{padding:10px;border-radius:10px;border:1px solid hsl(32 30% 65%);background:#fff;font-size:16px;font-family:var(--body);width:100%}
+  .form input{padding:10px;border-radius:10px;border:1px solid hsl(32 30% 65%);background:#fff;font-size:16px;font-family:var(--body);width:100%;min-width:0;box-sizing:border-box}
   .form .full{grid-column:1/-1}
   .state{font-size:14px;color:var(--muted);margin-top:8px;min-height:1.2em}
 
@@ -169,9 +169,9 @@
   @media (min-width:700px){.overlay{align-items:center;padding:20px}.sheet{border-radius:22px;max-height:88vh}}
   .sh-head{display:flex;align-items:flex-start;justify-content:space-between;padding:16px 18px 12px;border-bottom:1px solid var(--line)}
   .sh-head .wd{font-family:var(--head);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-  .sh-head .dt{font-family:var(--display);font-weight:700;font-size:22px;color:var(--gold);line-height:1.15}
+  .sh-head .dt{font-family:var(--display);font-weight:700;font-size:28px;color:var(--gold);line-height:1.12}
   .sh-head .x{width:40px;height:40px;border-radius:50%;font-size:22px;color:var(--muted)}
-  .sh-body{flex:1 1 auto;min-height:0;overflow-y:auto;padding:14px 18px 20px;-webkit-overflow-scrolling:touch}
+  .sh-body{flex:1 1 auto;min-height:0;overflow-y:auto;padding:14px 18px 36px;-webkit-overflow-scrolling:touch}
   .sh-head,.sh-foot{flex:none}
   .result{border-radius:14px;border:1.5px solid;padding:16px;text-align:center}
   .result.verde{background:var(--good-bg);border-color:hsl(130 55% 50%)} .result.amarelo{background:var(--mid-bg);border-color:hsl(42 85% 55%)} .result.vermelho{background:var(--bad-bg);border-color:hsl(0 70% 60%)} .result.vazio{background:var(--empty-bg);border-color:var(--line)}
@@ -180,15 +180,23 @@
   .result .lb{font-family:var(--head);font-weight:700;font-size:20px;margin-top:10px}
   .result.verde .lb{color:var(--good)} .result.amarelo .lb{color:hsl(38 90% 38%)} .result.vermelho .lb{color:var(--bad)} .result.vazio .lb{color:var(--muted)}
   .result .pt{font-size:14.5px;color:var(--muted);margin-top:2px}
-  .sh-body h4{font-family:var(--head);font-weight:700;font-size:17px;color:var(--fg);margin-top:20px;display:flex;align-items:center;gap:8px}
+  .sh-body h4{font-family:var(--head);font-weight:700;font-size:19px;color:var(--fg);margin-top:20px;display:flex;align-items:center;gap:8px}
   .sh-body .ins{font-size:14px;color:var(--muted);margin-top:4px;line-height:1.35}
   .mrow{background:#fff;border:1px solid var(--card-border);border-radius:14px;padding:12px 12px 10px;margin-top:10px;box-shadow:var(--shadow)}
   .mrow .top{display:flex;justify-content:space-between;align-items:baseline}
-  .mrow .nm{font-family:var(--head);font-weight:700;font-size:16px}
+  .mrow .nm{font-family:var(--head);font-weight:700;font-size:20px}
   .mrow .lv{font-family:var(--head);font-size:12px;font-weight:600}
   .mrow .ic{display:flex;justify-content:space-between;margin-top:8px;gap:4px}
   .mrow .ic button{flex:1;height:48px;border-radius:12px;border:2px solid transparent;font-size:21px;opacity:.5;transition:all .12s;background:transparent}
-  .mrow .ic button[data-v="-2"]{font-size:19px;letter-spacing:-5px}
+  .mrow .ic{position:relative;padding:4px 0}
+  .mrow .ic::before{content:"";position:absolute;left:9%;right:9%;top:50%;height:3px;margin-top:-1px;border-radius:3px;background:linear-gradient(90deg,hsl(0 70% 72%),hsl(35 35% 78%) 50%,hsl(42 95% 62%));opacity:.6}
+  .mrow .ic button{position:relative;z-index:1}
+  .mrow .ic button[data-v="-2"]{font-size:17px;letter-spacing:-5px}
+  .mrow .ic button[data-v="-1"]{font-size:19px}
+  .mrow .ic button[data-v="0"]{font-size:20px}
+  .mrow .ic button[data-v="1"]{font-size:23px}
+  .mrow .ic button[data-v="2"]{font-size:27px}
+  .mrow .ic button.sel.b-2{background:hsl(0 75% 93%)} .mrow .ic button.sel.b-1{background:hsl(15 70% 93%)} .mrow .ic button.sel.b0{background:hsl(35 30% 93%)} .mrow .ic button.sel.b1{background:hsl(42 85% 90%)} .mrow .ic button.sel.b2{background:hsl(42 95% 86%)}
   .mrow .ic button{position:relative}
   @keyframes cast{0%{transform:scale(1)}45%{transform:scale(1.35)}100%{transform:scale(1.06)}}
   @keyframes spark{from{opacity:1;transform:translateY(0) scale(.6)}to{opacity:0;transform:translateY(-16px) scale(1.4)}}
@@ -205,7 +213,7 @@
   .cnt{text-align:right;font-size:12px;color:var(--muted);margin-top:4px}
   .sh-foot{display:flex;gap:10px;padding:12px 18px calc(12px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:var(--card);border-radius:0 0 22px 22px}
   .sh-foot .msg{flex:1;text-align:center;font-size:14.5px;color:var(--muted);align-self:center}
-  .ro-note{margin-top:16px;padding:12px;border-radius:12px;background:var(--gold-pale);border:1px solid hsl(42 60% 60%);font-size:14.5px;text-align:center}
+  .ro-note{margin-top:12px;padding:12px;border-radius:12px;background:var(--gold-pale);border:1px solid hsl(42 60% 60%);font-size:14.5px;text-align:center}
 
   /* ---------- PIN ---------- */
   .pinbox{background:var(--card);border-radius:18px;padding:22px 20px;width:min(360px,92vw);margin:auto;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.4)}
@@ -217,7 +225,7 @@
   .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translate(-50%,20px);background:hsl(28 35% 18%);color:#fff;padding:10px 18px;border-radius:999px;font-size:15px;opacity:0;transition:all .25s;z-index:99;pointer-events:none;white-space:nowrap;max-width:92vw}
   .toast.show{opacity:1;transform:translate(-50%,0)}
   .toast.up{bottom:calc(100px + env(safe-area-inset-bottom))}
-  @media (min-width:1100px){.wrap{max-width:1040px}.hero{height:380px}#weeks{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}#weeks .card{margin-top:0}.tiles{grid-template-columns:repeat(4,1fr)}}
+  @media (min-width:1100px){.wrap{max-width:1040px}.hero{height:440px;margin:0 calc(50% - 50vw);background-position:center 30%}.hero .crest{right:calc(50vw - 520px + 16px)}.hero .lock{left:calc(50vw - 520px + 14px)}#weeks{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}#weeks .card{margin-top:0}.tiles{grid-template-columns:repeat(4,1fr)}}
 </style>
 </head>
 <body>
@@ -250,7 +258,7 @@
   </section>
 
   <div class="tiles">
-    <div class="tile"><div class="e">🔥</div><div class="v" id="tStreak">0 dias</div><div class="l">Sequência verde</div></div>
+    <div class="tile"><div class="e">🔥</div><div class="v" id="tStreak">0 dias</div><div class="l" id="tStreakL">Sequência verde</div></div>
     <div class="tile"><div class="e">📅</div><div class="v" id="tDays">0/53</div><div class="l">Dias registrados</div></div>
     <div class="tile"><div class="e">🏆</div><div class="v" id="tPts">0</div><div class="l">Saldo mágico</div></div>
     <div class="tile"><div class="e">🎯</div><div class="v" id="tGoal">24 dez</div><div class="l">Meta final</div></div>
@@ -277,8 +285,8 @@
 
   <section class="card">
     <h2><span class="ico">✨</span>Os mundos da missão</h2>
-    <div class="sub">Sete semanas de aventura e a Grande Final. Deslize para ver todos.</div>
-    <div class="worlds" id="worlds" tabindex="0" aria-label="Mundos da missão: deslize para ver todos"></div>
+    <div class="sub" id="worldsSub">Deslize para ver todos.</div>
+    <div class="worlds" id="worlds" tabindex="0" role="group" aria-label="Mundos da missão: deslize para ver todos"></div>
   </section>
 
   <section class="card hidden" id="settingsCard">
@@ -335,7 +343,7 @@
   const MONTHS = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
   const WDAYS = ["domingo", "segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado"];
 
-  const state = { cfg: { ...DEFAULTS }, days: {}, open: null, draft: null, dirty: false, saving: false, confirm: false, parent: false, db: null, loaded: false, cached: false };
+  const state = { cfg: { ...DEFAULTS }, days: {}, open: null, draft: null, dirty: false, saving: false, confirm: false, parent: false, db: null, loaded: false, cfgErr: "", cached: false };
 
   /* ---------- datas ---------- */
   const pad = n => String(n).padStart(2, "0");
@@ -359,7 +367,7 @@
   function normDay(raw) { raw = raw || {}; return { m: lvl(raw.m), t: lvl(raw.t), n: lvl(raw.n), note: typeof raw.note === "string" ? raw.note.slice(0, 500) : "" }; }
   const emptyDay = () => ({ m: null, t: null, n: null, note: "" });
   function score(d) { let s = 0, c = 0; for (const p of PERIODS) if (d[p.key] !== null) { s += d[p.key]; c++; } return { s, c }; }
-  function kind(d) { const { s, c } = score(d); if (!c) return "vazio"; const sc = s * PERIODS.length / c; return sc >= 2 ? "verde" : sc <= -2 ? "vermelho" : "amarelo"; }
+  function kind(d) { const { s, c } = score(d); if (!c) return "vazio"; const sc = s * PERIODS.length / c; return sc >= 2 && s >= 2 ? "verde" : sc <= -2 && s <= -2 ? "vermelho" : "amarelo"; }
   function overall() {
     let g = 0, y = 0, r = 0, pts = 0;
     const todayK = todayKey();
@@ -427,14 +435,14 @@
     else if (o.pct >= t) st.textContent = "🎉 Prêmio no caminho: " + state.cfg.prize + "! Continue brilhando até " + endS + " 🎉";
     else { st.textContent = "A magia ainda precisa de mais dias bons. Você consegue, Jade! 💛"; st.classList.add("warn"); }
     $("ruleText").textContent = "Regra do feitiço: terminar a missão com " + t + "% ou mais de dias bons = prêmio garantido (" + state.cfg.prize + ")" + (isXmas() ? " no Natal." : ".");
-    const s = streak(), bs = bestStreak(); $("tStreak").textContent = s + (s === 1 ? " dia" : " dias") + (bs > s ? " · recorde " + bs : "");
+    const s = streak(), bs = bestStreak(); $("tStreak").textContent = s + (s === 1 ? " dia" : " dias"); $("tStreakL").textContent = "Sequência verde" + (bs > s ? " · recorde " + bs : "");
     $("tDays").textContent = o.n + "/" + o.total; $("tPts").textContent = (o.pts > 0 ? "+" : "") + o.pts;
     $("tGoal").textContent = endD.getDate() + " " + MONTHS[endD.getMonth()].slice(0, 3);
     const m = buildMessage(); $("owl").innerHTML = "<b>" + esc(m.greet) + "</b>\n" + m.lines.map(esc).join("\n");
     const sy = parseKey(state.cfg.start).getFullYear(), ey = endD.getFullYear();
     $("footRange").textContent = sy === ey ? "De " + fmtLong(state.cfg.start) + " a " + fmtLong(state.cfg.end) + " de " + ey : "De " + fmtLong(state.cfg.start) + " de " + sy + " a " + fmtLong(state.cfg.end) + " de " + ey;
     $("lockBtn").classList.toggle("on", state.parent); $("lockBtn").textContent = state.parent ? "🔓" : "🔒";
-    $("settingsCard").classList.toggle("hidden", !state.parent);
+    $("settingsCard").classList.toggle("hidden", !(state.parent && state.db));
   }
 
   function renderWeeks() {
@@ -447,7 +455,7 @@
       for (let k = first; k <= last && k <= today; k = addDays(k, 1)) { const d = state.days[k]; if (!d) continue; const kd = kind(d); if (kd === "verde") g++; else if (kd === "amarelo") y++; else if (kd === "vermelho") r++; }
       const sec = document.createElement("section"); sec.className = "card week w-" + w.key;
       const title = i === lastIdx ? "Grande Final" : "Semana " + (i + 1);
-      sec.innerHTML = '<div class="banner"><div class="deco">' + w.deco + "<small>" + w.emoji + '</small></div><div class="t"><div class="tema">' + w.emoji + " Tema: " + esc(w.name) + "</div><h3>" + title + "<small>" + fmtRange(first, last) + '</small></h3><div class="q">“' + esc(w.quote) + '”</div><div class="pills"><span class="pill g"><i>😊</i>' + g + '</span><span class="pill y"><i>😐</i>' + y + '</span><span class="pill r"><i>😞</i>' + r + '</span></div></div></div><div class="wk-body"><div class="dow"><span>SEG</span><span>TER</span><span>QUA</span><span>QUI</span><span>SEX</span><span>SÁB</span><span>DOM</span></div><div class="days"></div></div>';
+      sec.innerHTML = '<div class="banner"><div class="deco">' + w.deco + "<small>" + w.emoji + '</small></div><div class="t"><div class="tema">' + w.emoji + " " + esc(w.name) + "</div><h3>" + title + "<small>" + fmtRange(first, last) + '</small></h3><div class="q">“' + esc(w.quote) + '”</div><div class="pills"><span class="pill g"><i>😊</i>' + g + '</span><span class="pill y"><i>😐</i>' + y + '</span><span class="pill r"><i>😞</i>' + r + '</span></div></div></div><div class="wk-body"><div class="dow"><span>SEG</span><span>TER</span><span>QUA</span><span>QUI</span><span>SEX</span><span>SÁB</span><span>DOM</span></div><div class="days"></div></div>';
       const grid = sec.querySelector(".days");
       for (let j = 0; j < 7; j++) {
         const k = addDays(mon, j); const b = document.createElement("button"); b.type = "button";
@@ -463,6 +471,7 @@
       }
       root.appendChild(sec); mon = addDays(mon, 7); i++;
     }
+    $("worldsSub").textContent = (i > 1 ? (i - 1) + (i - 1 === 1 ? " semana de aventura" : " semanas de aventura") + " e a Grande Final." : "Uma semana: a Grande Final.") + " Deslize para ver todos.";
   }
   function renderWorlds() {
     const cur = worldForDay(clampKey(todayKey()));
@@ -484,27 +493,31 @@
     const back = state.open;
     state.open = null; state.draft = null; state.dirty = false; state.confirm = false;
     $("sheetWrap").classList.add("hidden"); document.body.style.overflow = "";
+    const tt = $("toast"); tt.classList.remove("up"); tt.style.bottom = "";
     try { document.querySelector(".wrap").inert = false; } catch (e) {}
     const bd = $("day-" + back); if (bd) bd.focus({ preventScroll: true });
   }
-  function autosize(ta) { ta.style.height = "auto"; ta.style.height = Math.min(ta.scrollHeight + 2, 320) + "px"; }
+  function computeDirty() { const base = state.days[state.open] ? normDay(state.days[state.open]) : emptyDay(); state.dirty = JSON.stringify(normDay(state.draft)) !== JSON.stringify(base); }
+  function autosize(ta) { ta.style.height = "auto"; ta.style.height = Math.min(ta.scrollHeight + 2, 420) + "px"; }
   function renderSheet(focusSel) {
     const k = state.open, d = state.draft; if (!k || !d) return;
     const body0 = document.querySelector("#sheet .sh-body"); const scroll0 = body0 ? body0.scrollTop : 0;
+    const prev = document.activeElement, sh0 = $("sheet");
+    const keep = prev && sh0 && sh0.contains(prev) ? (prev.id ? "#" + prev.id : prev.dataset && prev.dataset.p !== undefined ? '[data-p="' + prev.dataset.p + '"][data-v="' + prev.dataset.v + '"]' : null) : null;
     const edit = state.parent && !!state.db; const kd = kind(d), sc = score(d), dt = parseKey(k), n = PERIODS.length;
     let html = '<div class="sh-head"><div><div class="wd">' + WDAYS[dt.getDay()] + '</div><div class="dt" id="shDate">' + fmtLong(k) + '</div></div><button type="button" class="x" id="shClose" aria-label="Fechar">✕</button></div>';
     html += '<div class="sh-body"><div class="result ' + kd + '"><div class="big">' + KIND[kd].emoji + '</div><div class="lb">' + KIND[kd].label + '</div><div class="pt">' + (kd === "vazio" ? "Nenhum momento registrado ainda." : "Pontuação do dia: " + (sc.s > 0 ? "+" : "") + sc.s + " de " + (2 * n) + " possíveis" + (sc.c < n ? " · registro parcial (" + sc.c + " de " + n + " momentos)" : "")) + "</div></div>";
+    if (!edit) html += '<div class="ro-note">🔒 Só o papai registra o feitiço do dia. Você pode ver tudo, Jade!</div>';
     html += "<h4>🪄 Os " + n + ' momentos do dia</h4><div class="ins">' + (edit ? "Toque em uma estrela ou raio para registrar como ela se comportou em cada momento. Pode mudar a qualquer hora." : "Veja como foi cada momento do dia.") + "</div>";
     for (const p of PERIODS) {
       const v = d[p.key]; const L = v === null ? null : LEVELS.find(l => l.v === v);
       html += '<div class="mrow' + (edit ? "" : " ro") + '"><div class="top"><span class="nm">' + p.emoji + " " + p.name + '</span><span class="lv ' + (L ? "c" + v : "") + '">' + (L ? L.label : "—") + '</span></div><div class="ic" role="radiogroup" aria-label="' + p.name + '">';
-      for (const l of LEVELS) html += '<button type="button" role="radio" aria-checked="' + (v === l.v) + '" aria-label="' + l.label + '" data-p="' + p.key + '" data-v="' + l.v + '" class="' + (v === l.v ? "sel b" + l.v : "") + '">' + l.emoji + "</button>";
+      for (const l of LEVELS) html += '<button type="button" role="radio" tabindex="' + ((v === null ? l.v === 0 : v === l.v) ? 0 : -1) + '" aria-checked="' + (v === l.v) + '" aria-label="' + l.label + '" data-p="' + p.key + '" data-v="' + l.v + '" class="' + (v === l.v ? "sel b" + l.v : "") + '">' + l.emoji + "</button>";
       html += "</div></div>";
     }
     html += "<h4>📜 Anotação do dia</h4>";
     if (edit) html += '<textarea class="note" id="noteIn" maxlength="500" placeholder="Ex.: foi educada na escola, ajudou a arrumar o quarto, brigou com o irmão...">' + esc(d.note) + '</textarea><div class="cnt"><span id="noteCnt">' + d.note.length + "</span>/500</div>";
     else html += '<textarea class="note" readonly>' + esc(d.note || "Sem anotação neste dia.") + "</textarea>";
-    if (!edit) html += '<div class="ro-note">🔒 Só o papai registra o feitiço do dia. Você pode ver tudo, Jade!</div>';
     html += "</div>";
     if (edit) {
       if (state.confirm) html += '<div class="sh-foot"><span class="msg">Descartar as alterações?</span><button type="button" class="btn" id="shBack">Voltar</button><button type="button" class="btn gold" id="shDiscard">Descartar</button></div>';
@@ -513,13 +526,20 @@
     const sh = $("sheet"); sh.innerHTML = html;
     const body1 = sh.querySelector(".sh-body"); if (body1) body1.scrollTop = scroll0;
     $("shClose").onclick = () => closeDay(false);
-    if (focusSel) { const fb = sh.querySelector(focusSel); if (fb) { fb.focus({ preventScroll: true }); if (fb.dataset.v !== undefined) fb.classList.add("cast"); } }
+    const fsel = focusSel || keep;
+    if (fsel) { const fb = sh.querySelector(fsel); if (fb) { fb.focus({ preventScroll: true }); if (focusSel && fb.dataset.v !== undefined) fb.classList.add("cast"); } }
     if (!edit) return;
     const taA = $("noteIn"); if (taA) autosize(taA);
-    sh.querySelectorAll(".ic button").forEach(b => b.onclick = () => { const p = b.dataset.p, v = Number(b.dataset.v); state.draft[p] = state.draft[p] === v ? null : v; state.dirty = true; state.confirm = false; renderSheet('[data-p="' + p + '"][data-v="' + v + '"]'); });
+    sh.querySelectorAll(".ic button").forEach(b => b.onclick = () => { const p = b.dataset.p, v = Number(b.dataset.v); state.draft[p] = state.draft[p] === v ? null : v; computeDirty(); state.confirm = false; renderSheet('[data-p="' + p + '"][data-v="' + v + '"]'); });
+    sh.querySelectorAll(".ic").forEach(g => g.addEventListener("keydown", e => {
+      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return; e.preventDefault();
+      const p = g.querySelector("button").dataset.p, cur = state.draft[p];
+      const nv = Math.max(-2, Math.min(2, (cur === null ? 0 : cur) + (e.key === "ArrowRight" ? 1 : -1)));
+      if (nv === cur) return; state.draft[p] = nv; computeDirty(); state.confirm = false; renderSheet('[data-p="' + p + '"][data-v="' + nv + '"]');
+    }));
     const ta = $("noteIn");
-    ta.oninput = () => { autosize(ta); state.draft.note = ta.value.slice(0, 500); state.dirty = true; $("noteCnt").textContent = state.draft.note.length; const sv = $("shSave"); if (sv) { sv.disabled = state.saving; sv.textContent = state.saving ? "Salvando…" : "Salvar feitiço ✨"; } };
-    const c = $("shClear"); if (c) c.onclick = () => { state.draft = emptyDay(); state.dirty = true; renderSheet(); };
+    ta.oninput = () => { autosize(ta); state.draft.note = ta.value.slice(0, 500); computeDirty(); $("noteCnt").textContent = state.draft.note.length; const sv = $("shSave"); if (sv) { sv.disabled = state.saving || !state.dirty; sv.textContent = state.saving ? "Salvando…" : state.dirty ? "Salvar feitiço ✨" : kind(state.draft) === "vazio" ? "Nada para salvar" : "Salvo"; } };
+    const c = $("shClear"); if (c) c.onclick = () => { state.draft = emptyDay(); computeDirty(); renderSheet("#shClear"); };
     const s = $("shSave"); if (s) s.onclick = saveDay;
     const bk = $("shBack"); if (bk) bk.onclick = () => { state.confirm = false; renderSheet(); };
     const ds = $("shDiscard"); if (ds) { ds.onclick = () => closeDay(true); ds.focus({ preventScroll: true }); }
@@ -569,7 +589,8 @@
   function banner(text, err) { const b = $("dbBanner"); if (!text) { b.classList.add("hidden"); return; } b.textContent = text; b.classList.remove("hidden"); b.classList.toggle("err", !!err); }
   async function loadCfg() {
     const { data: c, error } = await state.db.from("config").select("*").eq("id", "main").abortSignal(timeoutSignal(6000)).maybeSingle();
-    if (error) { offlineBanner(); return; }
+    if (error) { state.cfgErr = "offline"; offlineBanner(); return; }
+    state.cfgErr = "";
     if (c) {
       state.cfg = {
         start: isKey(c.start_date) ? c.start_date : DEFAULTS.start,
@@ -587,7 +608,7 @@
     if (error) { offlineBanner(); return; }
     const days = {};
     for (const r of data || []) if (isKey(r.date)) days[r.date] = normDay(r);
-    state.days = days; state.loaded = true; state.cached = false; banner(""); saveCache();
+    state.days = days; state.loaded = true; state.cached = false; if (state.cfgErr) offlineBanner(); else banner(""); saveCache();
     if (state.open && !state.dirty && !state.saving) state.draft = days[state.open] ? normDay(days[state.open]) : emptyDay();
     renderAll();
   }
@@ -596,18 +617,19 @@
   async function connect() {
     const C = window.DIARIO_CONFIG || {};
     loadCache();
-    if (!window.supabase) { state.loaded = true; banner("Não consegui carregar a biblioteca do banco de dados. Verifique a internet e abra o app de novo.", true); renderAll(); return; }
+    if (!window.supabase) { state.loaded = true; banner("Não consegui carregar a biblioteca do banco de dados. Verifique a internet e abra o app de novo.", true); renderAll(); registerSW(); return; }
     if (typeof C.supabaseUrl !== "string" || !/^https:\/\//.test(C.supabaseUrl) || !C.supabaseAnonKey || /^COLE_/.test(C.supabaseAnonKey)) {
-      state.loaded = true; banner("O diário ainda não está ligado ao banco de dados: preencha o arquivo config.js com a URL e a chave do Supabase.", true); renderAll(); return;
+      state.loaded = true; banner("O diário ainda não está ligado ao banco de dados: preencha o arquivo config.js com a URL e a chave do Supabase.", true); renderAll(); registerSW(); return;
     }
     const timer = setTimeout(() => { if (!state.loaded) banner("Ainda carregando o diário… se demorar, confira a conexão."); }, 4000); state.timer = timer;
     try { state.db = window.supabase.createClient(C.supabaseUrl, C.supabaseAnonKey, { db: { retry: false } }); } catch (e) { clearTimeout(timer); banner("Chaves do Supabase inválidas.", true); return; }
     try { const { data } = await state.db.auth.getSession(); state.parent = !!(data && data.session); } catch (e) { state.parent = false; }
     state.db.auth.onAuthStateChange((_ev, session) => { state.parent = !!session; renderAll(); });
     await refresh(); clearTimeout(timer);
-    try {
-      state.db.channel("diario").on("postgres_changes", { event: "*", schema: "public", table: "days" }, () => loadDays()).on("postgres_changes", { event: "*", schema: "public", table: "config" }, () => loadCfg()).subscribe();
-    } catch (e) {}
+    let channel = null;
+    const openChannel = () => { if (channel || !navigator.onLine) return; try { channel = state.db.channel("diario").on("postgres_changes", { event: "*", schema: "public", table: "days" }, () => loadDays()).on("postgres_changes", { event: "*", schema: "public", table: "config" }, () => loadCfg()).subscribe(); } catch (e) {} };
+    openChannel(); window.addEventListener("online", () => { openChannel(); refresh(); });
+    registerSW();
     document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") refresh(); });
     setInterval(refresh, 120000);
   }
@@ -627,7 +649,9 @@
 
   /* ---------- utilidades ---------- */
   let toastT;
-  function toast(t) { const el = $("toast"); el.textContent = t; el.classList.toggle("up", !!state.open); el.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove("show"), 2200); }
+  function toast(t) { const el = $("toast"); el.textContent = t; el.classList.toggle("up", !!state.open);
+    const foot = state.open ? document.querySelector("#sheet .sh-foot") : null; el.style.bottom = foot ? (window.innerHeight - foot.getBoundingClientRect().top + 12) + "px" : "";
+    el.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove("show"), 2200); }
   async function copyMessage() {
     const m = buildMessage(); const text = [m.greet, ...m.lines].join("\n");
     try { await navigator.clipboard.writeText(text); toast("Mensagem copiada!"); } catch (e) { toast("Não deu para copiar aqui. Selecione o texto e copie."); }
@@ -642,10 +666,20 @@
   $("copyMsg").onclick = copyMessage; $("goToday").onclick = goToday;
   $("worlds").addEventListener("scroll", worldsFade, { passive: true }); window.addEventListener("resize", worldsFade);
   $("saveCfg").onclick = saveCfg; $("lockNow").onclick = lock;
-  document.addEventListener("keydown", e => { if (e.key !== "Escape" || !state.open) return; if (state.confirm) { state.confirm = false; renderSheet("#shClose"); } else closeDay(false); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") { const pm = $("pinModal") || $("loginModal"); if (pm && !pm.classList.contains("hidden")) { pm.classList.add("hidden"); return; } }
+    if (e.key === "Tab" && state.open) {
+      const fs = [...$("sheet").querySelectorAll("button:not([disabled]):not([tabindex=\"-1\"]),textarea:not([readonly])")].filter(x => x.offsetParent !== null);
+      if (fs.length) { const first = fs[0], last = fs[fs.length - 1], a = document.activeElement;
+        if (e.shiftKey && (a === first || !$("sheet").contains(a))) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && (a === last || !$("sheet").contains(a))) { e.preventDefault(); first.focus(); } }
+      return;
+    }
+    if (e.key !== "Escape" || !state.open) return; if (state.confirm) { state.confirm = false; renderSheet("#shClose"); } else closeDay(false); });
 
+  let swDone = false;
+  function registerSW() { if (swDone || !("serviceWorker" in navigator)) return; swDone = true; navigator.serviceWorker.register("./sw.js").catch(() => {}); }
   fillSettings(); renderAll(); connect();
-  if ("serviceWorker" in navigator) window.addEventListener("load", () => { navigator.serviceWorker.register("./sw.js").catch(() => {}); });
+  window.addEventListener("load", () => setTimeout(registerSW, 8000));
 })();
 </script>
 </body>
