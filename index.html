@@ -112,6 +112,13 @@
   .pill.g i{background:hsl(130 65% 45%)} .pill.y i{background:hsl(48 95% 55%)} .pill.r i{background:hsl(0 75% 55%)}
 
   .banner .deco{display:none}
+  .banner .bg{position:absolute;inset:-24px;background:center/cover no-repeat;filter:blur(18px) brightness(.75)}
+  .banner .fit{position:absolute;top:0;right:0;width:44%;height:100%;object-fit:contain;object-position:100% 50%}
+  .week.fit .banner h3{font-size:22px}
+  .week.fit .banner{height:220px}
+  .week.fit .banner .pills{left:16px;right:auto}
+  .week.fit .banner .t{bottom:46px;right:46%}
+  .banner::before{z-index:1}
   .w-hp .banner{background:#1a1340 url(harry.jpg) center 25%/cover no-repeat}
   .w-sw .banner{background:#060814 url(sw.jpg) center 30%/cover no-repeat}
   .w-ppg .banner{background:#ffb6d9 url(ppg.jpg) center/cover no-repeat}
@@ -307,8 +314,8 @@
     { key: "sw", name: "Star Wars", emoji: "🌌", deco: "⚔️", quote: "Que a Força esteja com você", good: "A Força está forte em você, jovem Jedi! ✨", warn: "O lado da luz espera por você. Respire fundo e tente de novo. 💫" },
     { key: "ppg", name: "Meninas Superpoderosas", emoji: "💖", deco: "💖", quote: "Açúcar, tempero e tudo o que há de bom", good: "O dia foi salvo graças à Jade! 💥", warn: "Toda super-heroína tem um dia difícil. Amanhã é hora de voar! 🌈" },
     { key: "mario", name: "Mario e Princesa Peach", emoji: "🍄", deco: "👑", quote: "Cada dia é uma fase nova no Reino dos Cogumelos", good: "Fase concluída! Uma princesa de verdade! 🍑🚩", warn: "Perdeu uma vida, mas o jogo continua. Pega a estrela amanhã! ⭐" },
-    { key: "gwen", name: "Fantasma-Aranha", emoji: "🕸️", deco: "🩰", quote: "Com grandes poderes vêm grandes escolhas", good: "Gwen ficaria orgulhosa! 🕷️💗", warn: "Até a Fantasma-Aranha cai antes de voar de novo. 🕸️" },
-    { key: "samcat", name: "Sam & Cat", emoji: "🎀", deco: "🍭", quote: "Rir junto resolve qualquer confusão", good: "Dupla imbatível! Que dia divertido! 🎀", warn: "Até a Sam e a Cat se atrapalham às vezes. Amanhã a bagunça vira risada! 🍭" },
+    { key: "gwen", fit: true, name: "Fantasma-Aranha", emoji: "🕸️", deco: "🩰", quote: "Com grandes poderes vêm grandes escolhas", good: "Gwen ficaria orgulhosa! 🕷️💗", warn: "Até a Fantasma-Aranha cai antes de voar de novo. 🕸️" },
+    { key: "samcat", fit: true, name: "Sam & Cat", emoji: "🎀", deco: "🍭", quote: "Rir junto resolve qualquer confusão", good: "Dupla imbatível! Que dia divertido! 🎀", warn: "Até a Sam e a Cat se atrapalham às vezes. Amanhã a bagunça vira risada! 🍭" },
     { key: "bluey", name: "Bluey", emoji: "🐾", deco: "🐶", quote: "Brincar é coisa séria. E ser gentil também", good: "Até o Bandit ficaria orgulhoso! 🐾", warn: "Todo dia é um jogo novo. Bora tentar de novo, Bluey! 🐶" },
   ];
   const FINAL = { key: "final", name: "Grande Final", emoji: "🎄", deco: "🎅", quote: "O Papai Noel está chegando: a magia está em cada escolha", good: "Reta final brilhante! O trenó já está a caminho 🎄✨", warn: "Reta final: cada dia agora vale ouro para o Papai Noel! 🎁" };
@@ -409,9 +416,9 @@
       const first = mon < state.cfg.start ? state.cfg.start : mon, last = addDays(mon, 6) > state.cfg.end ? state.cfg.end : addDays(mon, 6);
       let g = 0, y = 0, r = 0;
       for (let k = first; k <= last; k = addDays(k, 1)) { const d = state.days[k]; if (!d) continue; const kd = kind(d); if (kd === "verde") g++; else if (kd === "amarelo") y++; else if (kd === "vermelho") r++; }
-      const sec = document.createElement("section"); sec.className = "card week w-" + w.key;
+      const sec = document.createElement("section"); sec.className = "card week w-" + w.key + (w.fit ? " fit" : "");
       const title = w === FINAL ? "Grande Final" : "Semana " + (i + 1);
-      sec.innerHTML = '<div class="banner"><div class="deco">' + w.deco + "<small>" + w.emoji + '</small></div><div class="t"><div class="tema">' + w.emoji + " Tema da semana — " + esc(w.name) + "</div><h3>" + title + "<small>" + fmtRange(first, last) + '</small></h3><div class="q">“' + esc(w.quote) + '”</div></div><div class="pills"><span class="pill g"><i>😊</i>' + g + '</span><span class="pill y"><i>😐</i>' + y + '</span><span class="pill r"><i>😞</i>' + r + '</span></div></div><div class="wk-body"><div class="dow"><span>SEG</span><span>TER</span><span>QUA</span><span>QUI</span><span>SEX</span><span>SÁB</span><span>DOM</span></div><div class="days"></div></div>';
+      sec.innerHTML = '<div class="banner">' + (w.fit ? '<div class="bg" style="background-image:url(' + w.key + '.jpg)"></div><img class="fit" src="' + w.key + '.jpg" alt="">' : '') + '<div class="deco">' + w.deco + "<small>" + w.emoji + '</small></div><div class="t"><div class="tema">' + w.emoji + " Tema da semana — " + esc(w.name) + "</div><h3>" + title + "<small>" + fmtRange(first, last) + '</small></h3><div class="q">“' + esc(w.quote) + '”</div></div><div class="pills"><span class="pill g"><i>😊</i>' + g + '</span><span class="pill y"><i>😐</i>' + y + '</span><span class="pill r"><i>😞</i>' + r + '</span></div></div><div class="wk-body"><div class="dow"><span>SEG</span><span>TER</span><span>QUA</span><span>QUI</span><span>SEX</span><span>SÁB</span><span>DOM</span></div><div class="days"></div></div>';
       const grid = sec.querySelector(".days");
       for (let j = 0; j < 7; j++) {
         const k = addDays(mon, j); const b = document.createElement("button"); b.type = "button";
