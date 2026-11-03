@@ -1,6 +1,6 @@
 /* Service worker do Diário Mágico da Jade.
    Troque VERSION a cada publicação: o cache antigo é apagado e a casca é baixada de novo. */
-const VERSION = "diario-2026-11-03b";
+const VERSION = "diario-2026-11-03c";
 const SHELL = [
   "./", "./index.html", "./config.js", "./manifest.webmanifest", "./favicon.png",
   "./vendor/supabase.min.js", "./fonts/fonts.css",
@@ -15,7 +15,7 @@ async function precache() {
   // As fontes ficam listadas dentro de fonts/fonts.css; lemos o arquivo para guardá-las também.
   try {
     const css = await (await fetch("./fonts/fonts.css")).text();
-    const files = [...new Set([...css.matchAll(/url\(([^)]+)\)/g).map(m => "./fonts/" + m[1].replace(/["']/g, ""))])];
+    const files = [...new Set([...css.matchAll(/url\(([^)]+)\)/g)].map(m => "./fonts/" + m[1].replace(/["']/g, "")))];
     await c.addAll(files);
   } catch (e) {}
 }

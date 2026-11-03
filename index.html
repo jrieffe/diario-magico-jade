@@ -96,12 +96,12 @@
   /* ---------- semanas ---------- */
   .week{padding:0;overflow:hidden}
   .banner{position:relative;height:204px;color:#fff;overflow:hidden}
-  .banner::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.28) 0%,rgba(0,0,0,.18) 35%,rgba(0,0,0,.84) 100%)}
+  .banner::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.26) 0%,rgba(0,0,0,.26) 18%,rgba(0,0,0,.68) 44%,rgba(0,0,0,.88) 100%)}
   .banner .deco{position:absolute;right:16px;top:14px;font-size:62px;line-height:1;filter:drop-shadow(0 4px 8px rgba(0,0,0,.4));z-index:1}
   .banner .deco small{display:block;font-size:34px;text-align:right;margin-top:-6px}
   .banner .t{position:absolute;left:16px;right:16px;bottom:12px;z-index:1}
-  .banner .tema{font-family:var(--head);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;opacity:.95;text-shadow:0 1px 4px rgba(0,0,0,.8)}
-  .banner h3{font-family:var(--head);font-weight:700;font-size:25px;line-height:1.1;margin-top:3px;text-shadow:0 2px 6px rgba(0,0,0,.8)}
+  .banner .tema{display:inline-block;max-width:100%;box-sizing:border-box;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:var(--head);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:rgba(18,10,40,.86);border:1px solid rgba(255,220,150,.35);padding:4px 10px;border-radius:999px;margin-bottom:7px}
+  .banner h3{font-family:var(--head);font-weight:700;font-size:25px;line-height:1.1;margin-top:0;text-shadow:0 2px 6px rgba(0,0,0,.8)}
   .banner h3 small{display:block;font-family:var(--head);font-size:11.5px;letter-spacing:.12em;opacity:.92;margin-top:3px;font-weight:500;white-space:nowrap}
   .banner .q{font-style:italic;font-size:14px;margin-top:4px;text-shadow:0 1px 4px rgba(0,0,0,.8);opacity:.95}
   .banner .pills{display:flex;gap:6px;margin-top:8px}
@@ -110,12 +110,6 @@
   .pill.g i{background:hsl(130 65% 45%)} .pill.y i{background:hsl(48 95% 55%)} .pill.r i{background:hsl(0 75% 55%)}
 
   .banner .deco{display:none}
-  .banner .bg{position:absolute;inset:-24px;background:center/cover no-repeat;filter:blur(18px) brightness(.75)}
-  .banner .fit{position:absolute;top:0;right:0;width:44%;height:100%;object-fit:contain;object-position:100% 50%}
-  .week.fit .banner h3{font-size:22px}
-  .week.fit .banner{height:220px}
-  .week.fit .banner .pills{left:16px;right:auto}
-  .week.fit .banner .t{bottom:46px;right:46%}
   .banner::before{z-index:1}
   .w-hp .banner{background:#1a1340 url(harry.jpg) center 25%/cover no-repeat}
   .w-sw .banner{background:#060814 url(sw.jpg) center 30%/cover no-repeat}
@@ -140,6 +134,7 @@
   .badge.pos{background:hsl(130 55% 38%)} .badge.zero{background:hsl(30 90% 50%)} .badge.neg{background:hsl(0 70% 45%)}
   .day .face{font-size:24px;line-height:1;margin-top:6px}
   .day .face.e{opacity:.35;font-size:16px}
+  .day .notemark{position:absolute;top:3px;right:4px;font-size:10px;line-height:1}
   .day .dots{position:absolute;bottom:5px;display:flex;gap:3px}
   .day .dots i{width:5px;height:5px;border-radius:50%;background:hsl(32 28% 72%)}
   .dots i.p{background:hsl(130 55% 42%)} .dots i.n{background:hsl(0 70% 50%)} .dots i.z{background:hsl(38 80% 55%)}
@@ -148,7 +143,7 @@
   .worlds::-webkit-scrollbar{display:none}
   .world{flex:none;width:76px;text-align:center;scroll-snap-align:start}
   .world .av{width:62px;height:62px;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:30px;border:3px solid;box-shadow:var(--shadow);overflow:hidden;background-size:cover;background-position:center}
-  .world .nm{font-family:var(--head);font-size:9px;letter-spacing:.04em;text-transform:uppercase;margin-top:6px;color:var(--gold-dark);line-height:1.15;height:2.3em;overflow:hidden;overflow-wrap:anywhere}
+  .world .nm{font-family:var(--head);font-size:9px;letter-spacing:.04em;text-transform:uppercase;margin-top:6px;color:var(--gold-dark);line-height:1.15;min-height:2.3em;max-height:3.5em;overflow:hidden;overflow-wrap:anywhere}
   .world.now .av{box-shadow:0 0 0 3px #fff,0 0 0 5px var(--gold)}
   .av.hp{background:url(crest.png) center/cover,#3a1d4e;border-color:#b8902e} .av.sw{background:url(sw.jpg) center/cover;border-color:#4f8cff} .av.ppg{background:url(ppg.jpg) center/cover;border-color:#ff6fb0} .av.mario{background:url(mario.jpg) center 40%/cover;border-color:#e52521} .av.gwen{background:url(gwen.jpg) 35% 15%/cover;border-color:#4fd8d0} .av.samcat{background:url(samcat.jpg) center 25%/cover;border-color:#ff5fa5} .av.bluey{background:url(bluey.jpg) center/cover;border-color:#3b8de0} .av.final{background:url(final.jpg) center 75%/cover;border-color:#e9c35a}
 
@@ -344,7 +339,8 @@
   const diffDays = (a, b) => Math.round((parseKey(b) - parseKey(a)) / 864e5);
   const mondayOf = k => { const d = parseKey(k); const w = (d.getDay() + 6) % 7; d.setDate(d.getDate() - w); return keyOf(d); };
   const weekIndex = k => Math.floor(diffDays(mondayOf(state.cfg.start), k) / 7);
-  const worldForDay = k => { const i = weekIndex(k); return i < 0 ? WORLDS[0] : i < WORLDS.length ? WORLDS[i] : FINAL; };
+  const worldForDay = k => { const i = weekIndex(k); return i < 0 ? WORLDS[0] : i === weekIndex(state.cfg.end) ? FINAL : WORLDS[i % WORLDS.length]; };
+  const isKey = k => /^\d{4}-\d{2}-\d{2}$/.test(k) && keyOf(parseKey(k)) === k;
   const clampKey = k => k < state.cfg.start ? state.cfg.start : k > state.cfg.end ? state.cfg.end : k;
   const inRange = k => k >= state.cfg.start && k <= state.cfg.end;
   const fmtLong = k => { const d = parseKey(k); return d.getDate() + " de " + MONTHS[d.getMonth()]; };
@@ -356,7 +352,7 @@
   function normDay(raw) { raw = raw || {}; return { m: lvl(raw.m), t: lvl(raw.t), n: lvl(raw.n), note: typeof raw.note === "string" ? raw.note.slice(0, 500) : "" }; }
   const emptyDay = () => ({ m: null, t: null, n: null, note: "" });
   function score(d) { let s = 0, c = 0; for (const p of PERIODS) if (d[p.key] !== null) { s += d[p.key]; c++; } return { s, c }; }
-  function kind(d) { const { s, c } = score(d); if (!c) return "vazio"; return s >= 2 ? "verde" : s <= -2 ? "vermelho" : "amarelo"; }
+  function kind(d) { const { s, c } = score(d); if (!c) return "vazio"; const sc = s * PERIODS.length / c; return sc >= 2 ? "verde" : sc <= -2 ? "vermelho" : "amarelo"; }
   function overall() {
     let g = 0, y = 0, r = 0, pts = 0;
     for (const k in state.days) { if (!inRange(k)) continue; const kd = kind(state.days[k]); if (kd === "vazio") continue; pts += score(state.days[k]).s; if (kd === "verde") g++; else if (kd === "amarelo") y++; else r++; }
@@ -370,6 +366,9 @@
     return n;
   }
 
+  function bestStreak() { let best = 0, cur = 0; for (let k = state.cfg.start; k <= state.cfg.end; k = addDays(k, 1)) { const d = state.days[k]; if (d && kind(d) === "verde") { cur++; if (cur > best) best = cur; } else if (d && kind(d) !== "vazio") cur = 0; } return best; }
+  const isXmas = () => /-12-2[45]$/.test(state.cfg.end);
+
   /* ---------- mensagem ---------- */
   function buildMessage() {
     const o = overall(), h = new Date().getHours(), today = todayKey(), w = worldForDay(clampKey(today));
@@ -382,12 +381,14 @@
     }
     if (!o.n) lines.push("A missão está começando: o primeiro dia registrado abre o caminho para o " + state.cfg.prize + ".");
     else {
-      lines.push("Sua magia está em " + o.pct + "%" + (o.pct >= state.cfg.target ? " — acima da meta de " + state.cfg.target + "%! O " + state.cfg.prize + " está no caminho 📱✨" : " — faltam " + (state.cfg.target - o.pct) + "% para chegar à meta de " + state.cfg.target + "%."));
+      const t = state.cfg.target;
+      lines.push("Sua magia está em " + o.pct + "%" + (o.pct > t ? " — acima da meta de " + t + "%! Prêmio no caminho 🎁✨" : o.pct === t ? " — exatamente na meta de " + t + "%! 🎁✨" : " — faltam " + (t - o.pct) + "% para chegar à meta de " + t + "%."));
       lines.push("Dias: " + o.g + " 😊 · " + o.y + " 😐 · " + o.r + " 😞. Sequência verde: " + streak() + " 🔥");
     }
     const left = diffDays(today, state.cfg.end);
-    if (left > 0) lines.push("Faltam " + left + " dia" + (left > 1 ? "s" : "") + " para o Natal 🎄");
+    if (left > 0) lines.push("Faltam " + left + " dia" + (left > 1 ? "s" : "") + (isXmas() ? " para o Natal 🎄" : " para o grande dia 🎁"));
     else if (left === 0) lines.push("Hoje é o grande dia! 🎄🎁");
+    else lines.push(o.n && o.pct >= state.cfg.target ? "Missão encerrada e vencida! 🎁" : "A missão terminou. Orgulho do caminho 💛");
     lines.push(ykd === "vermelho" || (o.n && o.pct < state.cfg.target) ? w.warn : w.good);
     return { greet, lines, w };
   }
@@ -397,44 +398,52 @@
     const o = overall(), w = worldForDay(clampKey(todayKey()));
     $("quote").textContent = "“" + w.quote + ".”"; $("quoteBy").textContent = "— Mundo da semana: " + w.name;
     $("prizeName").textContent = state.cfg.prize + " no Natal";
-    $("heroSub").textContent = "Missão " + state.cfg.prize + " · Natal 2026";
+    const endD = parseKey(state.cfg.end), endS = pad(endD.getDate()) + "/" + pad(endD.getMonth() + 1), t = state.cfg.target;
+    const today = todayKey(), over = today > state.cfg.end, minSample = Math.min(7, o.total);
+    $("heroSub").textContent = "Missão " + state.cfg.prize + " · " + (isXmas() ? "Natal " : "") + endD.getFullYear();
     $("fill").style.width = o.pct + "%"; $("pct").textContent = o.pct + "%";
     $("cG").textContent = o.g; $("cY").textContent = o.y; $("cR").textContent = o.r;
     const st = $("status"); st.classList.remove("warn");
-    const endD = parseKey(state.cfg.end), endS = pad(endD.getDate()) + "/" + pad(endD.getMonth() + 1);
-    if (!o.n) st.textContent = "O feitiço ainda não foi lançado. Comece registrando o primeiro dia.";
-    else if (o.pct >= state.cfg.target) st.textContent = "🎉 O " + state.cfg.prize + " está no caminho! Continue brilhando até " + endS + " 🎉";
+    if (over) {
+      if (o.n && o.pct >= t) st.textContent = "🎉 Missão cumprida com " + o.pct + "%! Prêmio conquistado: " + state.cfg.prize + " 🎁";
+      else { st.textContent = "A missão terminou com " + o.pct + "% (meta " + t + "%). Você aprendeu muito, Jade 💛"; st.classList.add("warn"); }
+    }
+    else if (!o.n) st.textContent = "O feitiço ainda não foi lançado. Comece registrando o primeiro dia.";
+    else if (o.n < minSample) st.textContent = "A magia está começando: " + o.n + " de " + minSample + " dias registrados para a primeira leitura ✨";
+    else if (o.pct >= t) st.textContent = "🎉 Prêmio no caminho: " + state.cfg.prize + "! Continue brilhando até " + endS + " 🎉";
     else { st.textContent = "A magia ainda precisa de mais dias bons. Você consegue, Jade! 💛"; st.classList.add("warn"); }
-    $("ruleText").textContent = "Regra do feitiço: terminar a missão com " + state.cfg.target + "% ou mais de comportamento = " + state.cfg.prize + " garantido no Natal.";
-    const s = streak(); $("tStreak").textContent = s + (s === 1 ? " dia" : " dias");
+    $("ruleText").textContent = "Regra do feitiço: terminar a missão com " + t + "% ou mais de dias bons = prêmio garantido (" + state.cfg.prize + ")" + (isXmas() ? " no Natal." : ".");
+    const s = streak(), bs = bestStreak(); $("tStreak").textContent = s + (s === 1 ? " dia" : " dias") + (bs > s ? " · recorde " + bs : "");
     $("tDays").textContent = o.n + "/" + o.total; $("tPts").textContent = (o.pts > 0 ? "+" : "") + o.pts;
     $("tGoal").textContent = endD.getDate() + " " + MONTHS[endD.getMonth()].slice(0, 3);
     const m = buildMessage(); $("owl").innerHTML = "<b>" + esc(m.greet) + "</b>\n" + m.lines.map(esc).join("\n");
-    $("footRange").textContent = "De " + fmtLong(state.cfg.start) + " a " + fmtLong(state.cfg.end) + " de " + endD.getFullYear();
+    const sy = parseKey(state.cfg.start).getFullYear(), ey = endD.getFullYear();
+    $("footRange").textContent = sy === ey ? "De " + fmtLong(state.cfg.start) + " a " + fmtLong(state.cfg.end) + " de " + ey : "De " + fmtLong(state.cfg.start) + " de " + sy + " a " + fmtLong(state.cfg.end) + " de " + ey;
     $("lockBtn").classList.toggle("on", state.parent); $("lockBtn").textContent = state.parent ? "🔓" : "🔒";
     $("settingsCard").classList.toggle("hidden", !state.parent);
   }
 
   function renderWeeks() {
     const today = todayKey(), root = $("weeks"); root.innerHTML = "";
-    let mon = mondayOf(state.cfg.start), i = 0;
+    let mon = mondayOf(state.cfg.start), i = 0; const lastIdx = weekIndex(state.cfg.end);
     while (mon <= state.cfg.end && i < 60) {
-      const w = i < WORLDS.length ? WORLDS[i] : FINAL;
+      const w = i === lastIdx ? FINAL : WORLDS[i % WORLDS.length];
       const first = mon < state.cfg.start ? state.cfg.start : mon, last = addDays(mon, 6) > state.cfg.end ? state.cfg.end : addDays(mon, 6);
       let g = 0, y = 0, r = 0;
       for (let k = first; k <= last; k = addDays(k, 1)) { const d = state.days[k]; if (!d) continue; const kd = kind(d); if (kd === "verde") g++; else if (kd === "amarelo") y++; else if (kd === "vermelho") r++; }
-      const sec = document.createElement("section"); sec.className = "card week w-" + w.key + (w.fit ? " fit" : "");
+      const sec = document.createElement("section"); sec.className = "card week w-" + w.key;
       const title = w === FINAL ? "Grande Final" : "Semana " + (i + 1);
-      sec.innerHTML = '<div class="banner">' + (w.fit ? '<div class="bg" style="background-image:url(' + w.key + '.jpg)"></div><img class="fit" src="' + w.key + '.jpg" alt="">' : '') + '<div class="deco">' + w.deco + "<small>" + w.emoji + '</small></div><div class="t"><div class="tema">' + w.emoji + " Tema da semana — " + esc(w.name) + "</div><h3>" + title + "<small>" + fmtRange(first, last) + '</small></h3><div class="q">“' + esc(w.quote) + '”</div><div class="pills"><span class="pill g"><i>😊</i>' + g + '</span><span class="pill y"><i>😐</i>' + y + '</span><span class="pill r"><i>😞</i>' + r + '</span></div></div></div><div class="wk-body"><div class="dow"><span>SEG</span><span>TER</span><span>QUA</span><span>QUI</span><span>SEX</span><span>SÁB</span><span>DOM</span></div><div class="days"></div></div>';
+      sec.innerHTML = '<div class="banner"><div class="deco">' + w.deco + "<small>" + w.emoji + '</small></div><div class="t"><div class="tema">' + w.emoji + " Tema: " + esc(w.name) + "</div><h3>" + title + "<small>" + fmtRange(first, last) + '</small></h3><div class="q">“' + esc(w.quote) + '”</div><div class="pills"><span class="pill g"><i>😊</i>' + g + '</span><span class="pill y"><i>😐</i>' + y + '</span><span class="pill r"><i>😞</i>' + r + '</span></div></div></div><div class="wk-body"><div class="dow"><span>SEG</span><span>TER</span><span>QUA</span><span>QUI</span><span>SEX</span><span>SÁB</span><span>DOM</span></div><div class="days"></div></div>';
       const grid = sec.querySelector(".days");
       for (let j = 0; j < 7; j++) {
         const k = addDays(mon, j); const b = document.createElement("button"); b.type = "button";
         if (!inRange(k)) { b.className = "day blank"; b.disabled = true; grid.appendChild(b); continue; }
         const d = state.days[k]; const kd = d ? kind(d) : "vazio"; const sc = d ? score(d).s : 0;
-        b.className = "day " + kd + (k === today ? " today" : "") + (k > today ? " future" : ""); b.id = "day-" + k;
+        b.className = "day " + kd + (k === today ? " today" : "") + (k > today ? " future" : ""); b.id = "day-" + k; b.disabled = k > today;
         let html = '<span class="num">' + parseKey(k).getDate() + "</span>";
         if (kd !== "vazio") html += '<span class="badge ' + (sc > 0 ? "pos" : sc < 0 ? "neg" : "zero") + '">' + (sc > 0 ? "+" : "") + sc + "</span>";
         html += '<span class="face' + (kd === "vazio" ? " e" : "") + '">' + (kd === "vazio" ? (k > today ? "" : "✨") : KIND[kd].emoji) + "</span>";
+        if (kd === "vazio" && d && d.note) html += '<span class="notemark" title="Tem anotação">📜</span>';
         html += '<span class="dots">' + PERIODS.map(p => { const v = d ? d[p.key] : null; return '<i class="' + (v === null ? "" : v > 0 ? "p" : v < 0 ? "n" : "z") + '"></i>'; }).join("") + "</span>";
         b.innerHTML = html; b.onclick = () => openDay(k); grid.appendChild(b);
       }
@@ -450,6 +459,7 @@
   /* ---------- gaveta do dia ---------- */
   function openDay(k) {
     if (!inRange(k)) return;
+    if (k > todayKey()) { toast("Esse dia ainda não chegou! ✨"); return; }
     state.open = k; state.draft = state.days[k] ? normDay(state.days[k]) : emptyDay(); state.dirty = false; state.confirm = false;
     $("sheetWrap").classList.remove("hidden"); renderSheet("#shClose"); document.body.style.overflow = "hidden";
     try { document.querySelector(".wrap").inert = true; } catch (e) {}
@@ -468,7 +478,7 @@
     const body0 = document.querySelector("#sheet .sh-body"); const scroll0 = body0 ? body0.scrollTop : 0;
     const edit = state.parent && !!state.db; const kd = kind(d), sc = score(d), dt = parseKey(k), n = PERIODS.length;
     let html = '<div class="sh-head"><div><div class="wd">' + WDAYS[dt.getDay()] + '</div><div class="dt" id="shDate">' + fmtLong(k) + '</div></div><button type="button" class="x" id="shClose" aria-label="Fechar">✕</button></div>';
-    html += '<div class="sh-body"><div class="result ' + kd + '"><div class="big">' + KIND[kd].emoji + '</div><div class="lb">' + KIND[kd].label + '</div><div class="pt">' + (kd === "vazio" ? "Nenhum momento registrado ainda." : "Pontuação do dia: " + (sc.s > 0 ? "+" : "") + sc.s + " de " + (2 * n) + " possíveis") + "</div></div>";
+    html += '<div class="sh-body"><div class="result ' + kd + '"><div class="big">' + KIND[kd].emoji + '</div><div class="lb">' + KIND[kd].label + '</div><div class="pt">' + (kd === "vazio" ? "Nenhum momento registrado ainda." : "Pontuação do dia: " + (sc.s > 0 ? "+" : "") + sc.s + " de " + (2 * n) + " possíveis" + (sc.c < n ? " · registro parcial (" + sc.c + " de " + n + " momentos)" : "")) + "</div></div>";
     html += "<h4>🪄 Os " + n + ' momentos do dia</h4><div class="ins">' + (edit ? "Toque em uma estrela ou raio para registrar como ela se comportou em cada momento. Pode mudar a qualquer hora." : "Veja como foi cada momento do dia.") + "</div>";
     for (const p of PERIODS) {
       const v = d[p.key]; const L = v === null ? null : LEVELS.find(l => l.v === v);
@@ -534,12 +544,12 @@
       const c = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
       if (!c || !c.cfg || !c.days) return;
       state.cfg = { ...DEFAULTS, ...c.cfg }; const days = {};
-      for (const k in c.days) if (/^\d{4}-\d{2}-\d{2}$/.test(k)) days[k] = normDay(c.days[k]);
+      for (const k in c.days) if (isKey(k)) days[k] = normDay(c.days[k]);
       state.days = days; state.cached = c.at || true;
     } catch (e) {}
   }
   function saveCache() { try { localStorage.setItem(CACHE_KEY, JSON.stringify({ cfg: state.cfg, days: state.days, at: new Date().toISOString() })); } catch (e) {} }
-  function offlineBanner() { banner(state.cached ? "Sem internet agora — mostrando o último diário salvo neste aparelho." : "Não foi possível carregar o diário. Verifique a conexão e tente de novo.", true); }
+  function offlineBanner() { state.loaded = true; clearTimeout(state.timer); banner(state.cached ? "Sem internet agora — mostrando o último diário salvo neste aparelho." : "Não foi possível carregar o diário. Verifique a conexão e tente de novo.", true); }
   function banner(text, err) { const b = $("dbBanner"); if (!text) { b.classList.add("hidden"); return; } b.textContent = text; b.classList.remove("hidden"); b.classList.toggle("err", !!err); }
   async function loadCfg() {
     const { data: c, error } = await state.db.from("config").select("*").eq("id", "main").maybeSingle();
@@ -559,7 +569,7 @@
     const { data, error } = await state.db.from("days").select("date,m,t,n,note");
     if (error) { offlineBanner(); return; }
     const days = {};
-    for (const r of data || []) if (/^\d{4}-\d{2}-\d{2}$/.test(r.date)) days[r.date] = normDay(r);
+    for (const r of data || []) if (isKey(r.date)) days[r.date] = normDay(r);
     state.days = days; state.loaded = true; state.cached = false; banner(""); saveCache();
     if (state.open && !state.dirty && !state.saving) state.draft = days[state.open] ? normDay(days[state.open]) : emptyDay();
     renderAll();
@@ -573,7 +583,7 @@
     if (typeof C.supabaseUrl !== "string" || !/^https:\/\//.test(C.supabaseUrl) || !C.supabaseAnonKey || /^COLE_/.test(C.supabaseAnonKey)) {
       state.loaded = true; banner("O diário ainda não está ligado ao banco de dados: preencha o arquivo config.js com a URL e a chave do Supabase.", true); renderAll(); return;
     }
-    const timer = setTimeout(() => { if (!state.loaded) banner("Ainda carregando o diário… se demorar, confira a conexão."); }, 10000);
+    const timer = setTimeout(() => { if (!state.loaded) banner("Ainda carregando o diário… se demorar, confira a conexão."); }, 10000); state.timer = timer;
     try { state.db = window.supabase.createClient(C.supabaseUrl, C.supabaseAnonKey); } catch (e) { clearTimeout(timer); banner("Chaves do Supabase inválidas.", true); return; }
     try { const { data } = await state.db.auth.getSession(); state.parent = !!(data && data.session); } catch (e) { state.parent = false; }
     state.db.auth.onAuthStateChange((_ev, session) => { state.parent = !!session; renderAll(); });
@@ -590,6 +600,7 @@
     const start = $("sStart").value, end = $("sEnd").value, target = Number($("sTarget").value), prize = $("sPrize").value.trim();
     if (!/^\d{4}-\d{2}-\d{2}$/.test(start) || !/^\d{4}-\d{2}-\d{2}$/.test(end) || end < start) { $("cfgState").textContent = "Datas inválidas."; return; }
     if (!(target >= 50 && target <= 100)) { $("cfgState").textContent = "Meta entre 50 e 100."; return; }
+    if (diffDays(start, end) > 120) { $("cfgState").textContent = "A missão pode ter no máximo 120 dias."; return; }
     $("cfgState").textContent = "Salvando…";
     const { error } = await state.db.from("config").upsert({ id: "main", start_date: start, end_date: end, target: Math.round(target), prize: prize || DEFAULTS.prize });
     $("cfgState").textContent = error ? "Sem permissão ou erro ao salvar." : "Ajustes salvos ✓";

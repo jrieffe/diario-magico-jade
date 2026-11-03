@@ -6,6 +6,7 @@
 --    Troque o e-mail abaixo se o seu usuário no Supabase usar outro.
 create or replace function public.is_papai() returns boolean
 language sql stable
+set search_path = ''
 as $$
   select lower(coalesce(auth.jwt() ->> 'email', '')) = lower('jrieffe@gmail.com');
 $$;
@@ -69,5 +70,8 @@ begin
   end if;
 end $$;
 
--- 6) Lembrete (fora do SQL): em Authentication → Sign In / Providers → Email,
---    DESLIGUE "Allow new users to sign up". Assim ninguém cria conta no seu projeto.
+-- 6) OBRIGATÓRIO (fora do SQL): em Authentication → Sign In / Providers → Email,
+--    DESLIGUE "Allow new users to sign up" e mantenha "Secure email change" LIGADO.
+--    Sem isso, qualquer pessoa com a chave pública poderia criar uma conta no projeto.
+--    Observação: um PATCH anônimo responde 204 sem gravar nada (comportamento do PostgREST
+--    com RLS); a escrita real é recusada, como mostram os POSTs com erro 401.

@@ -9,7 +9,7 @@ Endereço publicado: https://jrieffe.github.io/diario-magico-jade/
 1. Crie uma conta em https://supabase.com e um projeto novo (região *South America (São Paulo)*).
 2. **Authentication → Users → Add user → Create new user**: crie o usuário do papai (e-mail + senha) e marque *Auto confirm user*. Use o mesmo e-mail que está no início de `supabase.sql` (`jrieffe@gmail.com`); se quiser outro, troque lá antes do passo 3.
 3. **SQL Editor → New query**: cole todo o conteúdo de `supabase.sql` e clique em **Run**. Pode rodar de novo sempre que o arquivo for atualizado.
-4. **Authentication → Sign In / Providers → Email**: desligue **Allow new users to sign up**. Sem isso, qualquer pessoa poderia criar conta no projeto.
+4. **Authentication → Sign In / Providers → Email**: desligue **Allow new users to sign up** e mantenha **Secure email change** ligado. Sem isso, qualquer pessoa poderia criar conta no projeto. (Opcional, ainda mais forte: em Authentication → Users copie o UID do seu usuário e troque, no `supabase.sql`, a comparação de e-mail por `auth.uid() = 'SEU-UID'::uuid`.)
 5. **Project Settings → API Keys**: copie a **Project URL** e a chave **Publishable** (começa com `sb_publishable_`). Cole as duas em `config.js`. Essa chave pode ficar pública: ela só permite o que as políticas do banco liberam (leitura para todos, escrita só para o e-mail do papai).
 
 ## 2. Publicar no GitHub Pages (gratuito)
